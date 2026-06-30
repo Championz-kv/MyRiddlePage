@@ -151,8 +151,8 @@ const RIDDLES = [
 },
 {
   id: 8,
-  name: "Hidden in Plain Sight",
-  difficulty: "moderate",
+  name: "Something's Simple Here",
+  difficulty: "easy",
   lines: [
     "It is the front of women, it is at the back of cow,",
     "It is what that starts the world.",
