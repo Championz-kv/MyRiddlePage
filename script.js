@@ -392,9 +392,18 @@ VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly
       allowed though — "drone"→"remote controlled drone" ✗ (extra content = not correct).
    c) Same content words, different order, however awkward it reads. "coat of paint"→"paint coat" ✓,
       "paint of coat" ✓ (still just paint+coat reordered, "of" is filler).
-   ${synonymMode ? `d) SYNONYM MODE: guess is a real synonym of any listed answer. Test: would this word
-      appear in a thesaurus entry for the answer? Be GENEROUS — common synonyms fully count, not just
-      rare ones. Answer "wrong" → "false" ✓, "untrue" ✓, "inaccurate" ✓, "mistaken" ✓ are all correct.` : ""}
+   ${
+     synonymMode
+       ? `d) SYNONYM MODE: guess is a real synonym of any listed answer, OR uses a synonym
+      for ONE OR MORE component words within a multi-word answer while keeping the rest matching.
+      Test: would this word/phrase appear in a thesaurus entry for the answer (or its component word)?
+      Be GENEROUS — common synonyms fully count, not just rare ones.
+      Whole-answer example: answer "wrong" → "false" ✓, "untrue" ✓, "inaccurate" ✓ are all correct.
+      Component-word example: answer "the letter w" → "the alphabet w" ✓ correct ("alphabet" used
+      loosely as a synonym for "letter" here, "w" still matches exactly), "letter w" ✓ correct
+      (just missing filler "the"), "alphabet w" ✓ correct (component synonym + filler omission).`
+       : ""
+   }
    Math expressions (e.g. "4+5" for "9") are NEVER correct — see category 3 instead.
 
 2. "typo" — guess is the SAME single word as an answer, with:
@@ -422,7 +431,7 @@ VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly
    text/imagery that aren't related to the answer itself (e.g. "car" for answer "trunk" — car appears
    in the riddle but isn't related to what trunk means here). Wrong math (computes to a different
    number) is also wrong. If unsure between warm/wrong, pick wrong — UNLESS synonym mode applies
-   (category 1d always wins over 5, never mark a real synonym as wrong).
+   (category 1d always wins over 5, never mark a real synonym or component-synonym as wrong).
 
 6. "trash" — gibberish, random keys, no real attempt.
 
@@ -437,7 +446,9 @@ and confirm your sentence avoids all of them; if not, rewrite using only riddle 
 VARIETY IS REQUIRED — never repeat the same sentence structure. Rotate: playful dismissal, philosophical
 musing, mock confusion, rhetorical question, dry wit, dramatic reaction.
 
-- "correct": Celebrate warmly, ALWAYS name the answer explicitly (e.g. "the answer is COAT OF PAINT"). ${isExactMatch && hasMultiple ? `Also name other valid answer(s): ${otherAnswers.map(a=>a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `ALWAYS name ALL listed answers (${answersArr.map(a=>a.toUpperCase()).join(", ")}) even if they only guessed a synonym, and mention synonyms count too.` : ""} Max 2 sentences.
+- "correct": ALWAYS write a genuine warm celebration sentence (not just the bare answer word) AND
+  name the answer explicitly within it (e.g. "Nice work — the answer is COAT OF PAINT!"). Never reply
+  with only the answer and nothing else. ${isExactMatch && hasMultiple ? `Also name other valid answer(s): ${otherAnswers.map((a) => a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `ALWAYS name ALL listed answers (${answersArr.map((a) => a.toUpperCase()).join(", ")}) even if they only guessed a synonym, and mention synonyms count too.` : ""} Max 2 sentences.
 - "typo": note it looks like a spelling slip, nudge to retry. No answer reveal. Max 2 sentences.
 - "close"/"warm"/"wrong"/"trash": 1 sentence each, riddle imagery only, no answer-related words.`
 

@@ -195,7 +195,7 @@ const RIDDLES = [
 },
 {
   id: 10,
-  name: "On the Right Track",
+  name: "Run on it, Do it, Drive on it",
   difficulty: "easy",
   lines: [
     "It is a verb, it is a noun,",
