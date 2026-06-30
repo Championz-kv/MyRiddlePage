@@ -386,7 +386,7 @@ remaining content words as an unordered set. This normalized comparison is what 
       — they all normalize to {lost, camel} which matches answer "lost camel". 
 
 VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly before rejecting it.
-For multi line guess or answers, judge after understanding the meaning of the whole phrase as a whole to compare.
+For multi line guess or answers, judge after understanding the meaning of the whole phrase as a whole to compare. For example "not correct" as a whole is close to "incorrect".
 
 1. "correct":
    a) Exact match (ignore case/punctuation).
@@ -400,7 +400,7 @@ For multi line guess or answers, judge after understanding the meaning of the wh
    Math expressions (e.g. "4+5" for "9") are NEVER correct — see category 3 instead.
 
 2. "typo" — when guess is the SAME single word as an answer, with:
-   a) 1-2 letters wrong/swapped/missing/added anywhere, INCLUDING plurals/tense or participle forms. example- "painr"→"paint" ✓, "echu"→"echo" ✓, "carpet"↔"carpets" ✓, "misconception"↔"misconceptions" ✓ (the "s" alone is a typo, not close).
+   a) 1-2 letters wrong/swapped/missing/added anywhere, and INCLUDING plurals/tense or participle forms. example- "painr"→"paint" ✓, "echu"→"echo" ✓, "carpet"↔"carpets" ✓, "misconception"↔"misconceptions" ✓ (the "s" is simply a typo, consider s,es,ed,ing and such forms as typo).
    b) Regional spelling variant: "center"↔"centre", "colour"↔"color", "foetus"↔"fetus".
    Typo does NOT solve the riddle — just nudges the player to recheck spelling.
    "carcat" is NOT a typo for "carpet" (different word, just sounds similar) — that's close instead.

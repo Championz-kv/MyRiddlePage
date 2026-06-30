@@ -600,7 +600,7 @@ const RIDDLES = [
 },
 {
   id: 30,
-  name: "Still a Stone",
+  name: "Story of the Stone",
   difficulty: "easy",
   lines: [
     "I got a stone from a person, who was then a chancellor,",
