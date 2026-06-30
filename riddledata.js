@@ -298,7 +298,7 @@ const RIDDLES = [
     "Say the first two words out loud.",
     "The joke depends on a phrase sounding like a single word."
   ],
-  answer: ["dine-a-sour","dinosaur",]
+  answer: ["dine-a-sour","dinosaur",],
   synonym: false
 },
 {
