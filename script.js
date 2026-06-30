@@ -194,7 +194,10 @@ async function handleSubmit() {
   addUserMsg(raw, state)
   if (state.status === STATUS.TRY) state.status = STATUS.TRIED
 
-  const clean = raw.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim()
+  const clean = raw
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, "")
+    .trim()
   const answers = Array.isArray(riddle.answer)
     ? riddle.answer.map((a) => a.toLowerCase().trim())
     : [riddle.answer.toLowerCase().trim()]
@@ -341,10 +344,10 @@ function handleGiveUp() {
 
 // Returns: { verdict: 'correct'|'typo'|'close'|'warm'|'wrong'|'trash', message: string }
 async function judgeGuessWithAI(riddle, guess, state, isExactMatch = false) {
-  const riddleText   = riddle.lines.join("\n")
-  const answersArr   = Array.isArray(riddle.answer) ? riddle.answer : [riddle.answer]
-  const synonymMode  = riddle.synonym === true   // clean boolean field, nothing in answer array
-  const hasMultiple  = answersArr.length > 1
+  const riddleText = riddle.lines.join("\n")
+  const answersArr = Array.isArray(riddle.answer) ? riddle.answer : [riddle.answer]
+  const synonymMode = riddle.synonym === true // clean boolean field, nothing in answer array
+  const hasMultiple = answersArr.length > 1
   const otherAnswers = answersArr.slice(1)
   const attemptsSoFar = state.chat.filter((m) => m.role === "user").length
 
@@ -357,10 +360,10 @@ async function judgeGuessWithAI(riddle, guess, state, isExactMatch = false) {
     : ""
 
   const answersBlock = isExactMatch
-    ? `VALID ANSWERS (all equal): ${answersArr.map(a => `"${a}"`).join(", ")}${synonymNote}
+    ? `VALID ANSWERS (all equal): ${answersArr.map((a) => `"${a}"`).join(", ")}${synonymNote}
 → Verdict MUST be "correct".`
     : `PRIVATE ANSWER LOOKUP (use ONLY to judge proximity — do not output any of these words in your message):
-${answersArr.map((a, i) => `  [${i+1}] "${a}"`).join("\n")}`
+${answersArr.map((a, i) => `  [${i + 1}] "${a}"`).join("\n")}`
 
   const primaryAnswerStr = answersArr[0].toUpperCase()
 
@@ -391,14 +394,19 @@ VERDICT — pick exactly one, in this priority order:
       count — e.g. answer "drone" → "remote controlled drone" ✗ (extra content words = not correct).
    c) Word order changed but same content words. Answer "coat of paint" → "paint coat" ✓.
    d) Math/logic expression like 4+5 are NOT correct even if answer is 9. It is close for 9 and warm if concept of addition or 4 or 5 is there in riddle.
-   ${synonymMode ? `e) SYNONYM MODE: guess is an EXACT direct synonym of one of the listed answers
+   ${
+     synonymMode
+       ? `e) SYNONYM MODE: guess is an EXACT direct synonym of one of the listed answers
       (e.g. answer "wrong" → guess "false" ✓ since false is a direct synonym of wrong). The synonym
-      must be a genuine same-meaning word, not a loosely related one.` : ""}
+      must be a genuine same-meaning word, not a loosely related one.`
+       : ""
+   }
 
 2. "typo" — the guess is the SAME single word as an answer, with either:
    a) 1-2 letters wrong, swapped, or missing (e.g. "painr"→"paint", "echu"→"echo").
    b) A regional/alternate English spelling of the same word (e.g. "center"→"centre",
       "foetus"→"fetus", "colour"→"color").
+   c) Any plural/tense/participle etc form changes
    Typo does NOT solve the riddle — it just nudges the player that they're a letter away.
    STRICT: "carcat" is NOT a typo for "carpet" (different word, sounds similar) — that's "close" instead.
 
@@ -428,10 +436,14 @@ VERDICT — pick exactly one, in this priority order:
 The only thing you must NEVER do is reveal the answer word(s) in typo/close/warm/wrong/trash responses.
 You MAY reference the riddle's themes, imagery, and concepts to make responses feel witty and contextual.
 
+Before writing your message, mentally check: "does any word in this sentence relate to, pair with, or
+hint at the answer?" If yes, remove or replace that word. When in doubt, write a vaguer sentence using
+only the riddle's narrative/imagery, not the answer's concept.
+
 VARIETY IS REQUIRED. Do not use the same sentence structure twice. Rotate between: playful dismissal,
 philosophical musing, mock confusion, rhetorical question, dry wit, dramatic reaction. Keep it fresh.
 
-- "correct": Celebrate warmly. ALWAYS state the correct answer explicitly (e.g. "the answer is COAT OF PAINT"). Reference their guess if it differs. ${isExactMatch && hasMultiple ? `Also mention other valid answer(s): ${otherAnswers.map(a=>a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `State the listed answer(s) (${answersArr.map(a=>a.toUpperCase()).join(", ")}) and mention synonyms also count.` : ""} Max 2 sentences.
+- "correct": Celebrate warmly. ALWAYS state the correct answer explicitly (e.g. "the answer is COAT OF PAINT"). Reference their guess if it differs. ${isExactMatch && hasMultiple ? `Also mention other valid answer(s): ${otherAnswers.map((a) => a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `State the listed answer(s) (${answersArr.map((a) => a.toUpperCase()).join(", ")}) and mention synonyms also count.` : ""} Max 2 sentences.
 - "typo":    Say it looks like a typo / spelling slip, gently nudge them to check their spelling and try again. Do NOT reveal the answer. Max 1-2 sentences.
 - "close":   1 sentence. Make them feel tantalizingly near. Creative, not generic. MUST NOT say the answer.
 - "warm":    1 sentence. Motivate with context. MUST NOT say the answer.
@@ -459,7 +471,7 @@ philosophical musing, mock confusion, rhetorical question, dry wit, dramatic rea
   // Safety: if system confirmed exact match, ALWAYS force correct
   // (typo no longer auto-solves, so we must not let an exact match slip through as typo)
   if (isExactMatch && verdict !== "correct") {
-    const others = otherAnswers.length ? ` Also valid: ${otherAnswers.map(a => a.toUpperCase()).join(", ")}.` : ""
+    const others = otherAnswers.length ? ` Also valid: ${otherAnswers.map((a) => a.toUpperCase()).join(", ")}.` : ""
     return { verdict: "correct", message: parsed.message + others }
   }
 

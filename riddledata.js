@@ -4,7 +4,7 @@
 const RIDDLES = [
 {
   id: 1,
-  name: "The Many Trunks",
+  name: "It was left there, it is part here",
   difficulty: "moderate",
   lines: [
     "They found it buried, but still left it,",
