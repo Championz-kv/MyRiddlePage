@@ -579,7 +579,7 @@ const RIDDLES = [
 },
 {
   id: 29,
-  name: "A Hero Within",
+  name: "Changing on Seeing More",
   difficulty: "hard",
   lines: [
     "If first two are seen, then it is a he,",

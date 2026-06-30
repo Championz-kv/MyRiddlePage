@@ -383,9 +383,10 @@ of, on, for, with, without, in, at, to — and (2) ignoring word order entirely.
 remaining content words as an unordered set. This normalized comparison is what categories 1, 2, and
 3 below are based on — apply it consistently everywhere, for example all of these count as the SAME guess for judging:
       "lost camel", "camel lost", "the lost camel", "a lost camel", "lost the camel", "for camel lost"
-      — they all normalize to {lost, camel} which matches answer "lost camel".
+      — they all normalize to {lost, camel} which matches answer "lost camel". 
 
 VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly before rejecting it.
+For multi line guess or answers, judge after understanding the meaning of the whole phrase as a whole to compare.
 
 1. "correct":
    a) Exact match (ignore case/punctuation).
@@ -422,7 +423,7 @@ VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly
 5. "wrong" — no real connection or too far from the actual answer with respect to the riddle or actual meaning. Also wrong: words from the riddle's
    text/imagery that aren't related to the answer itself (e.g. "car" for answer "trunk" — car appears
    in the riddle but isn't related to what trunk means here). Wrong math (computes to a different
-   number) is also wrong. If unsure between warm/wrong, pick wrong.
+   number) is also wrong. If unsure between warm/wrong, pick warm.
 
 6. "trash" — gibberish, random keys, no real attempt. Any violent or abusive words also go here.
 
@@ -435,7 +436,8 @@ and the player guessed "telephone" (wrong/warm/close), do NOT write "telephone w
 reply, only describe it indirectly via riddle imagery. Only the riddle's own narrative imagery
 (scenario/objects/setting from the riddle text) may be referenced — never anything describing the
 answer itself. Before writing, list 3-5 words associated with the answer (synonyms/opposites/category/
-the answer's own component words) and confirm your sentence avoids all of them; if not, rewrite the reply.
+the answer's own component words) and confirm your sentence avoids all of them; if not, rewrite the reply. Do not give any hints/suggestions on the riddle or guessing at all. Just judge, don't help.
+In case the answers for a riddle are multiple check the guess for each one of them and choose the best verdict out of these, i.e. correct then typo then close then warm and then wrong.
 
 VARIETY IS REQUIRED — never repeat the same sentence structure. Rotate: playful dismissal, philosophical
 musing, mock confusion, rhetorical question, dry wit, dramatic reaction.
