@@ -385,36 +385,50 @@ If verdict is "correct": message MUST literally name the answer "${primaryAnswer
 
 VERDICT — pick exactly one, in this priority order:
 
-1. "correct" — mark correct when ANY of these are true:
+1. "correct" — mark correct when ANY of these are true. Before deciding NOT correct, explicitly check
+   each of a/b/c/d below one by one — do not skip straight to "wrong" or "close" without testing them:
    a) Exact match to an answer (ignoring case/punctuation).
-   b) Minor word omission/addition that doesn't change meaning — small filler words only
-      (a/an/the/of/on/without/with). All nouns, adjectives, and meaning-carrying words must still
-      match the answer exactly. Example: answer "an ocean without water" → "ocean without water" ✓,
-      "ocean with no water" ✓. But adding NEW descriptive content words (not in the answer) does NOT
-      count — e.g. answer "drone" → "remote controlled drone" ✗ (extra content words = not correct).
-   c) Word order changed but same content words. Answer "coat of paint" → "paint coat" ✓.
-   d) Math/logic expression like 4+5 are NOT correct even if answer is 9. It is close for 9 and warm if concept of addition or 4 or 5 is there in riddle.
+   b) Minor filler word omission/addition (a/an/the/of/on/without/with) that doesn't change meaning,
+      as long as every meaning-carrying word (noun/verb/adjective) still matches the answer exactly.
+      TEST IT: strip filler words from both the guess and the answer, then compare what's left.
+      Example: answer "stone" → guess "a stone" → strip "a" → "stone" = "stone" ✓ CORRECT.
+      Example: answer "an ocean without water" → "ocean without water" ✓, "ocean with no water" ✓.
+      Adding NEW descriptive content words (not in the answer) does NOT count — e.g. answer "drone" →
+      "remote controlled drone" ✗ (extra content words = not correct, that's close/warm instead).
+   c) Word order changed but same content words, regardless of how unusual the reordering sounds.
+      TEST IT: take the content words from the guess, take the content words from the answer — same
+      set of words, different order = CORRECT, even if the reordered phrase sounds grammatically odd.
+      Example: answer "coat of paint" → guess "paint coat" ✓ CORRECT, guess "paint of coat" ✓ CORRECT
+      (still just "paint" + "coat" reordered, "of" is filler — ignore that it reads awkwardly).
    ${
      synonymMode
-       ? `e) SYNONYM MODE: guess is an EXACT direct synonym of one of the listed answers
+       ? `d) SYNONYM MODE: guess is an EXACT direct synonym of one of the listed answers
       (e.g. answer "wrong" → guess "false" ✓ since false is a direct synonym of wrong). The synonym
       must be a genuine same-meaning word, not a loosely related one.`
        : ""
    }
 
-2. "typo" — the guess is the SAME single word as an answer, with either:
-   a) 1-2 letters wrong, swapped, or missing (e.g. "painr"→"paint", "echu"→"echo").
+   Math/logic expressions (like "4+5" for answer "9") are NEVER "correct", even if the math is right —
+   see categories 3 and 4 below for how to handle these instead.
+
+2. "typo" — the guess is the SAME single word as an answer, with any of:
+   a) 1-2 letters wrong, swapped, missing, or added — including simple pluralization
+      (e.g. "painr"→"paint", "echu"→"echo", "carpet"→"carpets" IS a typo, just the plural -s added).
    b) A regional/alternate English spelling of the same word (e.g. "center"→"centre",
       "foetus"→"fetus", "colour"→"color").
-   c) Any plural/tense/participle etc form changes
    Typo does NOT solve the riddle — it just nudges the player that they're a letter away.
    STRICT: "carcat" is NOT a typo for "carpet" (different word, sounds similar) — that's "close" instead.
 
 3. "close" — ONLY when:
    a) The guess very closely means the same thing as the answer (true near-synonym), e.g.
-      "badminton" for "shuttlecock".
+      "badminton" for "shuttlecock" is too broad for close — but "shuttle" for "shuttlecock" is close
+      because one word is literally contained within / is a shortened form of the other.
    b) The answer is a substring of the guess or the guess is a substring of the answer (whole-word
       containment), e.g. "shuttle" for "shuttlecock", "mirror" for "rear-view mirror".
+   c) A math/logic expression that, when YOU verify it, equals this riddle's specific numeric answer.
+      Compute it yourself — don't assume. Answer "nine"(=9), guess "4+5" → compute 4+5=9 ✓ this counts
+      as "close" (right number, not expressed as the word). Answer "one"(=1), guess "4+5" → 4+5=9≠1,
+      this is "wrong" instead, not close.
    This is a NARROW category — not just "related," but nearly identical or one-contains-the-other.
 
 4. "warm" — the guess and answer are connected through the RIDDLE's context: same field, same
@@ -422,33 +436,43 @@ VERDICT — pick exactly one, in this priority order:
    themselves are not close synonyms. Examples: "game" or "badminton player" for answer "shuttlecock"
    (related through the riddle's sport context, not synonym-level). This should be used more often
    than close — most "in the right direction" guesses belong here, not in close.
+   Also warm: a guess that references the CONCEPT of a math operation relevant to the riddle (e.g. the
+   riddle mentions counting or "4" and "5" somewhere, and the guess is "addition" or "sum") without
+   actually computing the right number.
 
 5. "wrong" — the guess has no real connection to the answer, OR is only superficially/thematically
    paired with it without being truly related (e.g. "ice" for answer "fire" — commonly paired as
    opposites in speech, but not a meaningful guess connection). Also wrong: something that appears
    in the riddle's text/imagery but isn't actually related to the specific answer word (e.g. "car"
    when the answer is "trunk" — car is mentioned in the riddle but trunk-the-answer isn't about cars).
+   A math expression that computes to the wrong number for this riddle is also wrong.
    If genuinely unsure between warm and wrong, pick wrong.
 
 6. "trash" — gibberish, random key-mashing, or a guess showing no real attempt to solve.
 
 ━━━ MESSAGE RULES ━━━
-The only thing you must NEVER do is reveal the answer word(s) in typo/close/warm/wrong/trash responses.
-You MAY reference the riddle's themes, imagery, and concepts to make responses feel witty and contextual.
+⚠️ ABSOLUTE RULE — READ CAREFULLY: In typo/close/warm/wrong/trash responses, your message must NEVER
+contain: the answer word itself, any synonym of the answer, any word from the same word-family or
+concept-pair as the answer (e.g. if answer is "shadow", you may NOT use "shade", "dark", "silhouette",
+"dim", "light", "shine", "illuminate", "glow", or any other light/dark vocabulary — these are all part
+of the same concept-pair as shadow and are just as revealing as the answer itself). Opposites, paired
+concepts, and "themed" words connected to the answer's CATEGORY are forbidden — only the riddle's own
+narrative imagery (the scenario, objects, and setting described in the riddle text, NOT words related
+to what the answer itself is) may be referenced.
 
-Before writing your message, mentally check: "does any word in this sentence relate to, pair with, or
-hint at the answer?" If yes, remove or replace that word. When in doubt, write a vaguer sentence using
-only the riddle's narrative/imagery, not the answer's concept.
+Before writing your message, mentally list 3-5 words that are closely associated with the answer
+(synonyms, opposites, the same category/field). Then check your sentence does not contain ANY of them.
+If it does, rewrite the sentence using only the riddle's narrative/imagery instead.
 
 VARIETY IS REQUIRED. Do not use the same sentence structure twice. Rotate between: playful dismissal,
 philosophical musing, mock confusion, rhetorical question, dry wit, dramatic reaction. Keep it fresh.
 
 - "correct": Celebrate warmly. ALWAYS state the correct answer explicitly (e.g. "the answer is COAT OF PAINT"). Reference their guess if it differs. ${isExactMatch && hasMultiple ? `Also mention other valid answer(s): ${otherAnswers.map((a) => a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `State the listed answer(s) (${answersArr.map((a) => a.toUpperCase()).join(", ")}) and mention synonyms also count.` : ""} Max 2 sentences.
 - "typo":    Say it looks like a typo / spelling slip, gently nudge them to check their spelling and try again. Do NOT reveal the answer. Max 1-2 sentences.
-- "close":   1 sentence. Make them feel tantalizingly near. Creative, not generic. MUST NOT say the answer.
-- "warm":    1 sentence. Motivate with context. MUST NOT say the answer.
-- "wrong":   1 sentence. Witty, uses riddle context to make the dismissal feel smart and specific to this riddle. MUST NOT say the answer. E.g. for a riddle about reflections where someone guesses "tank": "A tank reflects very little — except maybe your determination."
-- "trash":   1 sentence. Playfully mock the effort. MUST NOT say the answer.`
+- "close":   1 sentence. Make them feel tantalizingly near. Creative, not generic. Use ONLY riddle imagery, never answer-related words.
+- "warm":    1 sentence. Motivate with context. Use ONLY riddle imagery, never answer-related words.
+- "wrong":   1 sentence. Witty, uses riddle imagery (not answer-related words) to make the dismissal feel smart and specific to this riddle.
+- "trash":   1 sentence. Playfully mock the effort. No answer-related words.`
 
   console.log("[Groq] Sending judge request for guess:", guess)
   const raw = await callAI(prompt)

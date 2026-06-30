@@ -25,8 +25,8 @@ const RIDDLES = [
 },
 {
   id: 2,
-  name: "The Invisible Necessity",
-  difficulty: "hard",
+  name: "Can see or not?",
+  difficulty: "moderate",
   lines: [
     "Whenever it is there, I am able to see,",
     "Still it is what I'm sure, you can't ever see.",
@@ -41,7 +41,7 @@ const RIDDLES = [
   ],
   hints: [
     "You rely on it every day, but it isn't something you can physically hold.",
-    "Without it, seeing becomes impossible."
+    "no sound, no space, necessary but can't save. hmm."
   ],
   answer: "light",
   synonym: false
