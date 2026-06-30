@@ -415,9 +415,9 @@ For multi line guess or answers, judge after understanding the meaning of the wh
    d) Math/logic expression that YOU verify equals this riddle's answer. Compute it yourself. Answer
       "nine"(=9), guess "4+5" → 4+5=9 ✓ close. Answer "one"(=1), guess "4+5" → 4+5=9≠1, that's wrong.
 
-4. "warm" — connected through the RIDDLE's context (same field/category/role) but not synonym-level,
+4. "warm" — connected through the RIDDLE's context (same field/category/role) but not synonym-level or apart from riddle, anyhow related to the answer in real,
    and not a literal partial-word-match (those go in close/3c instead). "game" or "badminton player"
-   for "shuttlecock" — related via the riddle's sport, not synonymous. Use this MORE than close — most
+   for "shuttlecock" — related via the riddle's sport, so warm like "sleep" and "night". Use this MORE than close — most
    "right direction" guesses belong here when there's no literal word overlap with the answer. Guess and answer are indirectly and not too closely related with respect to riddle, then they are warm.
 
 5. "wrong" — no real connection or too far from the actual answer with respect to the riddle or actual meaning. Also wrong: words from the riddle's

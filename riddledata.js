@@ -639,7 +639,7 @@ const RIDDLES = [
 {
   id: 32,
   name: "Climbing Without Moving",
-  difficulty: "hard",
+  difficulty: "moderate",
   lines: [
     "It is made of blocks, or lines one or few,",
     "it may show heart rate, performance or time,",
