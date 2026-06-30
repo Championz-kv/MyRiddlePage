@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyRiddlePage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCANLINE OVERLAY -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">MyRiddlePage</span>
+        <span class="logo-bracket">]</span>
+      </div>
+      <p class="header-sub">
+        A collection of riddles &mdash; sharpen your mind, one mystery at a time.
+        <span class="blink-cursor">_</span>
+      </p>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="riddle-board" id="riddleBoard">
+    <!-- Tiles injected by JS -->
+  </main>
+
+  <!-- RESET SECTION -->
+  <div class="reset-section">
+    <button class="btn-reset" id="btnReset">
+      <span class="reset-icon">⟳</span> Reset All Riddle History
+    </button>
+    <p class="reset-hint">Clears all saved chats and statuses. Cannot be undone.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="footer-text">
+      made by <span class="footer-name">Khushil</span>
+      &nbsp;&mdash;&nbsp;
+      <a href="https://github.com/KhushilVarshney" target="_blank" rel="noopener noreferrer" class="footer-link">github / KhushilVarshney</a>
+    </span>
+  </footer>
+
+  <!-- RIDDLE DEVICE OVERLAY -->
+  <div class="device-overlay" id="deviceOverlay" aria-hidden="true">
+    <div class="device-casing">
+
+      <!-- Device top strip -->
+      <div class="device-top-strip">
+        <div class="speaker-dots">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="device-label" id="deviceLabel">RIDDLE #00</div>
+        <div class="difficulty-badge" id="deviceDifficulty">MODERATE</div>
+        <button class="btn-close-x" id="btnClose" title="Close">✕</button>
+      </div>
+
+      <!-- Screens row -->
+      <div class="device-screens">
+
+        <!-- LEFT: Riddle screen -->
+        <div class="screen-wrap screen-left">
+          <div class="screen-bezel">
+            <div class="screen-inner" id="riddleScreen">
+              <div class="screen-header">
+                <span class="screen-title" id="riddleName">—</span>
+              </div>
+              <div class="riddle-lines" id="riddleLines">
+                <!-- Riddle text lines injected here -->
+              </div>
+              <div class="hint-area" id="hintArea"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Chat screen -->
+        <div class="screen-wrap screen-right">
+          <div class="screen-bezel">
+            <div class="screen-inner chat-screen">
+              <div class="chat-messages" id="chatMessages">
+                <!-- Messages injected here -->
+              </div>
+              <div class="chat-input-row">
+                <input
+                  type="text"
+                  id="guessInput"
+                  class="guess-input"
+                  placeholder="your answer..."
+                  maxlength="60"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+              <div class="chat-buttons">
+                <button class="btn btn-cleardata" id="btnClearData">CLEAR DATA</button>
+                <button class="btn btn-hint" id="btnHint">HINT</button>
+                <button class="btn btn-giveup" id="btnGiveUp">GIVE UP</button>
+                <button class="btn btn-submit" id="btnSubmit">SUBMIT</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Device bottom strip -->
+      <div class="device-bottom-strip">
+        <div class="status-bar" id="statusBar">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="status-text" id="statusText">READY</span>
+        </div>
+        <div class="speaker-dots speaker-dots-right">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="riddledata.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
