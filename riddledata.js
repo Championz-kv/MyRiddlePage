@@ -265,7 +265,7 @@ const RIDDLES = [
 },
 {
   id: 13,
-  name: "Words About Words",
+  name: "Rules and Contradictions",
   difficulty: "hard",
   lines: [
     "It is where success comes before work,",
@@ -298,7 +298,7 @@ const RIDDLES = [
     "Say the first two words out loud.",
     "The joke depends on a phrase sounding like a single word."
   ],
-  answer: "dinosaur",
+  answer: ["dine-a-sour","dinosaur",]
   synonym: false
 },
 {
@@ -634,7 +634,7 @@ const RIDDLES = [
     "Think of the physical connection rather than the device."
   ],
   answer: ["telephone wire", "telephone line", "communication cable"],
-  synonym: true
+  synonym: false
 },
 {
   id: 32,
