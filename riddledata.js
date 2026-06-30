@@ -240,7 +240,7 @@ const RIDDLES = [
 },
 {
   id: 12,
-  name: "The First Addition",
+  name: "Which Number?",
   difficulty: "moderate",
   lines: [
     "When If I put all of these one by one then-",

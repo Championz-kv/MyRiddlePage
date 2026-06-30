@@ -368,30 +368,35 @@ ${answersArr.map((a, i) => `  [${i + 1}] "${a}"`).join("\n")}`
   const primaryAnswerStr = answersArr[0].toUpperCase()
 
   const prompt = `You are the judge of a riddle game. Respond ONLY with a JSON object — no other text.
-
 RIDDLE THE PLAYER IS SOLVING:
 ${riddleText}
-
 SECRET (never reveal in close/warm/wrong/trash responses):
 ${answersBlock}
-
 PLAYER'S GUESS: "${guess}"
 ${preknown}
-
 YOUR ONLY OUTPUT — start with { end with }, nothing else:
 {"verdict":"VERDICT_HERE","message":"MESSAGE_HERE"}
-
 If verdict is "correct": message MUST literally name the answer "${primaryAnswerStr}".
+
+BEFORE JUDGING: normalize both the guess and the answer by (1) removing filler words — a, an, the,
+of, on, for, with, without, in, at, to — and (2) ignoring word order entirely. Compare only the
+remaining content words as an unordered set. This normalized comparison is what categories 1, 2, and
+3 below are based on — apply it consistently everywhere, not just in isolated examples.
 
 VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly before rejecting it.
 
 1. "correct":
    a) Exact match (ignore case/punctuation).
-   b) Same meaning-words as answer, only filler words (a/an/the/of/on/without/with) added/missing.
-      Test: strip filler from both, compare what's left. "a stone"→"stone" ✓. No NEW content words
-      allowed though — "drone"→"remote controlled drone" ✗ (extra content = not correct).
-   c) Same content words, different order, however awkward it reads. "coat of paint"→"paint coat" ✓,
-      "paint of coat" ✓ (still just paint+coat reordered, "of" is filler).
+   b) After normalizing (strip filler words, ignore order), the guess's content words are IDENTICAL
+      to the answer's content words — no extra, no missing. This covers ANY combination of filler
+      word presence/absence AND any word order. All of these count as the SAME guess for judging:
+      "lost camel", "camel lost", "the lost camel", "a lost camel", "lost the camel", "for camel lost"
+      — they all normalize to {lost, camel} which matches answer "lost camel" → ALL correct.
+      Similarly "ocean without water", "the ocean without water", "an ocean without water",
+      "without water ocean" all normalize to {ocean, water} (with "without" treated as filler since
+      it just connects the same two ideas) → ALL correct for answer "an ocean without water".
+      NOT allowed: adding NEW content words not in the answer — "drone"→"remote controlled drone" ✗
+      (extra content words = not correct, that belongs in close/warm).
    Math expressions (e.g. "4+5" for "9") are NEVER correct — see category 3 instead.
 
 2. "typo" — guess is the SAME single word as an answer, with:
@@ -406,10 +411,10 @@ VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly
    a) True near-synonym, OR one word is a shortened form of the other: "shuttle" for "shuttlecock" ✓,
       but "badminton" for "shuttlecock" is too broad for close (that's warm).
    b) Answer is a substring of guess or vice versa: "mirror" for "rear-view mirror" ✓.
-   c) For multi-word answers: the guess correctly names SOME but not all of the key content words.
-      Test: does the guess contain at least one exact content word from the answer, just missing
-      others? Answer "lost camel" → guess "camel" alone is close (has the noun, missing the
-      descriptor), guess "lost" alone is close (has the descriptor, missing the noun).
+   c) For multi-word answers: after normalizing (see above), the guess's content words are a PARTIAL
+      match — it has at least one correct content word from the answer but is missing one or more
+      others. Answer "lost camel" → guess "camel" (any order/filler variant) is close, guess "lost"
+      alone is close. This is different from category 1b, which requires ALL content words present.
    d) Math/logic expression that YOU verify equals this riddle's answer. Compute it yourself. Answer
       "nine"(=9), guess "4+5" → 4+5=9 ✓ close. Answer "one"(=1), guess "4+5" → 4+5=9≠1, that's wrong.
 
