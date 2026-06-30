@@ -295,7 +295,7 @@ const RIDDLES = [
     "if it was present, what is it? you think..."
   ],
   hints: [
-    "Say the first two words out loud.",
+    "The riddle is kinda a joke, so better you don't think it's edible, neither is it sour (or maybe)",
     "The joke depends on a phrase sounding like a single word."
   ],
   answer: ["dine-a-sour","dinosaur",],
@@ -399,7 +399,7 @@ const RIDDLES = [
 },
 {
   id: 20,
-  name: "Everything Was...",
+  name: "Everything here is...",
   difficulty: "easy",
   lines: [
     "The Earth was never round firstly,",
