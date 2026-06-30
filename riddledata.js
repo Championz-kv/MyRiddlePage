@@ -167,8 +167,8 @@ const RIDDLES = [
     "Read the words literally rather than their meanings.",
     "It's a single letter with an interesting shape."
   ],
-  answer: ["the letter w","w"],
-  synonym: true
+  answer: ["the letter w","w","the alphabet w"],
+  synonym: false
 },
 {
   id: 9,
@@ -214,7 +214,7 @@ const RIDDLES = [
 },
 {
   id: 11,
-  name: "The Misplaced Wanderer",
+  name: "I Thought Camel",
   difficulty: "moderate",
   lines: [
     "It is brown, it has a hump,",
@@ -419,8 +419,8 @@ const RIDDLES = [
     "Every statement before the ending shares the same quality.",
     "The final line directly describes every previous claim."
   ],
-  answer: ["wrong", "misconceptions", "incorrect"],
-  synonym: true
+  answer: ["wrong", "misconceptions", "incorrect", "untrue","myth","inaccurate","faulty"],
+  synonym: false
 },
 {
   id: 21,
