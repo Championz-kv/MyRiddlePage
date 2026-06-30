@@ -62,7 +62,7 @@ const RIDDLES = [
     "Its outcome depends entirely on which face lands upward.",
     "Board games often can't begin without it."
   ],
-  answer: "dice",
+  answer: ["dice","die"],
   synonym: false
 },
 {
@@ -107,7 +107,7 @@ const RIDDLES = [
 },
 {
   id: 6,
-  name: "The Worthless Hero",
+  name: "The Used Hero",
   difficulty: "moderate",
   lines: [
     "I used him for a purpose, oh sorry,",

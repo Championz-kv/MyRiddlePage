@@ -400,20 +400,24 @@ VERDICT — pick exactly one, in this priority order:
       set of words, different order = CORRECT, even if the reordered phrase sounds grammatically odd.
       Example: answer "coat of paint" → guess "paint coat" ✓ CORRECT, guess "paint of coat" ✓ CORRECT
       (still just "paint" + "coat" reordered, "of" is filler — ignore that it reads awkwardly).
-   ${
-     synonymMode
-       ? `d) SYNONYM MODE: guess is an EXACT direct synonym of one of the listed answers
-      (e.g. answer "wrong" → guess "false" ✓ since false is a direct synonym of wrong). The synonym
-      must be a genuine same-meaning word, not a loosely related one.`
-       : ""
-   }
+   ${synonymMode ? `d) SYNONYM MODE — CHECK THIS CAREFULLY, do not skip it: this riddle accepts direct
+      synonyms of ANY listed answer as correct. TEST IT: ask yourself "if I looked this guess up in a
+      thesaurus entry for the answer, would it appear as a synonym?" If yes → correct. Examples for
+      answer "wrong": "false" ✓ correct (false = a standard synonym of wrong/incorrect), "untrue" ✓
+      correct (same meaning), "inaccurate" ✓ correct (same meaning — something inaccurate IS wrong/
+      incorrect), "mistaken" ✓ correct, "erroneous" ✓ correct. Be GENEROUS here — if the guess and the
+      answer would be interchangeable in a sentence without changing its meaning, mark it correct.
+      Do NOT require the guess to be a rare or unusual synonym — common everyday synonyms count fully.` : ""}
 
    Math/logic expressions (like "4+5" for answer "9") are NEVER "correct", even if the math is right —
    see categories 3 and 4 below for how to handle these instead.
 
 2. "typo" — the guess is the SAME single word as an answer, with any of:
-   a) 1-2 letters wrong, swapped, missing, or added — including simple pluralization
-      (e.g. "painr"→"paint", "echu"→"echo", "carpet"→"carpets" IS a typo, just the plural -s added).
+   a) 1-2 letters wrong, swapped, missing, or added anywhere in the word — including simple
+      pluralization or de-pluralization. TEST IT: if you remove/add just 1-2 letters from the guess,
+      does it become exactly the answer (or vice versa)? If yes → typo.
+      Examples: "painr"→"paint" ✓, "echu"→"echo" ✓, "carpet"↔"carpets" ✓ (just the "s"),
+      "misconception"↔"misconceptions" ✓ (just the "s" — this IS a typo, not close/warm).
    b) A regional/alternate English spelling of the same word (e.g. "center"→"centre",
       "foetus"→"fetus", "colour"→"color").
    Typo does NOT solve the riddle — it just nudges the player that they're a letter away.
@@ -446,7 +450,9 @@ VERDICT — pick exactly one, in this priority order:
    in the riddle's text/imagery but isn't actually related to the specific answer word (e.g. "car"
    when the answer is "trunk" — car is mentioned in the riddle but trunk-the-answer isn't about cars).
    A math expression that computes to the wrong number for this riddle is also wrong.
-   If genuinely unsure between warm and wrong, pick wrong.
+   If genuinely unsure between warm and wrong, pick wrong. BUT if synonym mode is active and the guess
+   is a real synonym, it must go to "correct" (category 1d), not "wrong" — do not let category 5
+   override category 1d.
 
 6. "trash" — gibberish, random key-mashing, or a guess showing no real attempt to solve.
 
@@ -467,7 +473,7 @@ If it does, rewrite the sentence using only the riddle's narrative/imagery inste
 VARIETY IS REQUIRED. Do not use the same sentence structure twice. Rotate between: playful dismissal,
 philosophical musing, mock confusion, rhetorical question, dry wit, dramatic reaction. Keep it fresh.
 
-- "correct": Celebrate warmly. ALWAYS state the correct answer explicitly (e.g. "the answer is COAT OF PAINT"). Reference their guess if it differs. ${isExactMatch && hasMultiple ? `Also mention other valid answer(s): ${otherAnswers.map((a) => a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `State the listed answer(s) (${answersArr.map((a) => a.toUpperCase()).join(", ")}) and mention synonyms also count.` : ""} Max 2 sentences.
+- "correct": Celebrate warmly. ALWAYS state the correct answer explicitly (e.g. "the answer is COAT OF PAINT"). Reference their guess if it differs. ${isExactMatch && hasMultiple ? `Also mention other valid answer(s): ${otherAnswers.map(a=>a.toUpperCase()).join(", ")}${synonymMode ? ", and their synonyms" : ""}.` : synonymMode ? `ALWAYS state ALL the listed answers (${answersArr.map(a=>a.toUpperCase()).join(", ")}) explicitly by name, even if the player only guessed a synonym of one — and mention synonyms also count.` : ""} Max 2 sentences.
 - "typo":    Say it looks like a typo / spelling slip, gently nudge them to check their spelling and try again. Do NOT reveal the answer. Max 1-2 sentences.
 - "close":   1 sentence. Make them feel tantalizingly near. Creative, not generic. Use ONLY riddle imagery, never answer-related words.
 - "warm":    1 sentence. Motivate with context. Use ONLY riddle imagery, never answer-related words.
