@@ -14,6 +14,15 @@
   <!-- SCANLINE OVERLAY -->
   <div class="scanline-overlay" aria-hidden="true"></div>
 
+  <!-- AMBIENT MOVING LINES -->
+  <div class="bg-lines" aria-hidden="true">
+    <span class="bg-line bg-line-1"></span>
+    <span class="bg-line bg-line-2"></span>
+    <span class="bg-line bg-line-3"></span>
+    <span class="bg-line bg-line-4"></span>
+    <span class="bg-line bg-line-5"></span>
+  </div>
+
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
@@ -23,11 +32,28 @@
         <span class="logo-bracket">]</span>
       </div>
       <p class="header-sub">
-        A collection of riddles &mdash; sharpen your mind, one mystery at a time.
+        A collection of my self written poetic riddles &mdash; have fun solving them.
         <span class="blink-cursor">_</span>
+      </p>
+      <p class="header-warning">
+        Under Modifications ⚠️ — Please report any issues you find in riddle answers, hints, or grammar, or in AI and GUI features if you find. Contact championz_ on discord.
       </p>
     </div>
   </header>
+
+  <!-- PROGRESS SECTION -->
+  <div class="progress-section">
+    <div class="progress-stats" id="progressStats">
+      <span class="stat-item"><span class="stat-label">Total</span> <span class="stat-value" id="statTotal">0</span></span>
+      <span class="stat-item"><span class="stat-label">Untouched</span> <span class="stat-value stat-untouched" id="statUntouched">0</span></span>
+      <span class="stat-item"><span class="stat-label">Tried</span> <span class="stat-value stat-tried" id="statTried">0</span></span>
+      <span class="stat-item"><span class="stat-label">Solved</span> <span class="stat-value stat-solved" id="statSolved">0</span></span>
+      <span class="stat-item"><span class="stat-label">Gave Up</span> <span class="stat-value stat-gaveup" id="statGaveup">0</span></span>
+    </div>
+    <div class="progress-bar-track" id="progressBarTrack">
+      <!-- Segments injected by JS -->
+    </div>
+  </div>
 
   <!-- MAIN CONTENT -->
   <main class="riddle-board" id="riddleBoard">
@@ -44,11 +70,13 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <span class="footer-text">
-      made by <span class="footer-name">Khushil</span>
-      &nbsp;&mdash;&nbsp;
+    <p class="footer-disclaimer">
+      The riddles in this page are all originally written by the author and not copied. However various sources including already existing riddles or poems might have been used. Users are free to suggest any answers (not included and valid in any riddle) or improvements on the page or riddles itself.
+    </p>
+    <p class="footer-credit">made by <span class="footer-name">Khushil</span> • 2026</p>
+    <p class="footer-credit">
       <a href="https://github.com/KhushilVarshney" target="_blank" rel="noopener noreferrer" class="footer-link">github / KhushilVarshney</a>
-    </span>
+    </p>
   </footer>
 
   <!-- RIDDLE DEVICE OVERLAY -->

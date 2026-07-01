@@ -82,6 +82,8 @@ function buildBoard() {
     tile.addEventListener("click", () => openDevice(riddle.id))
     board.appendChild(tile)
   })
+
+  updateProgress()
 }
 
 function updateTile(id) {
@@ -92,6 +94,44 @@ function updateTile(id) {
   const statusEl = tile.querySelector(".tile-status")
   statusEl.className = `tile-status ${STATUS_CLASS[state.status]}`
   statusEl.textContent = STATUS_LABEL[state.status]
+  updateProgress()
+}
+
+function updateProgress() {
+  const total    = RIDDLES.length
+  let tried = 0, solved = 0, gaveup = 0
+
+  RIDDLES.forEach(r => {
+    const s = getState(r.id).status
+    if (s === STATUS.SOLVED)      solved++
+    else if (s === STATUS.GAVEUP) gaveup++
+    else if (s === STATUS.TRIED)  tried++
+  })
+
+  const untouched = total - tried - solved - gaveup
+
+  document.getElementById("statTotal").textContent     = total
+  document.getElementById("statUntouched").textContent = untouched
+  document.getElementById("statTried").textContent     = tried
+  document.getElementById("statSolved").textContent    = solved
+  document.getElementById("statGaveup").textContent    = gaveup
+
+  // Build segmented progress bar
+  const track = document.getElementById("progressBarTrack")
+  track.innerHTML = ""
+  const segments = [
+    { pct: solved / total,    cls: "seg-solved"    },
+    { pct: tried / total,     cls: "seg-tried"     },
+    { pct: gaveup / total,    cls: "seg-gaveup"    },
+    { pct: untouched / total, cls: "seg-untouched" },
+  ]
+  segments.forEach(({ pct, cls }) => {
+    if (pct <= 0) return
+    const seg = document.createElement("div")
+    seg.className = `seg ${cls}`
+    seg.style.width = `${(pct * 100).toFixed(2)}%`
+    track.appendChild(seg)
+  })
 }
 
 // ── DEVICE OPEN / CLOSE ──────────────────────────────────────
@@ -194,10 +234,7 @@ async function handleSubmit() {
   addUserMsg(raw, state)
   if (state.status === STATUS.TRY) state.status = STATUS.TRIED
 
-  const clean = raw
-    .toLowerCase()
-    .replace(/[^a-z0-9 ]/g, "")
-    .trim()
+  const clean = raw.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim()
   const answers = Array.isArray(riddle.answer)
     ? riddle.answer.map((a) => a.toLowerCase().trim())
     : [riddle.answer.toLowerCase().trim()]
@@ -344,26 +381,20 @@ function handleGiveUp() {
 
 // Returns: { verdict: 'correct'|'typo'|'close'|'warm'|'wrong'|'trash', message: string }
 async function judgeGuessWithAI(riddle, guess, state, isExactMatch = false) {
-  const riddleText = riddle.lines.join("\n")
-  const answersArr = Array.isArray(riddle.answer) ? riddle.answer : [riddle.answer]
-  const synonymMode = riddle.synonym === true // clean boolean field, nothing in answer array
-  const hasMultiple = answersArr.length > 1
+  const riddleText   = riddle.lines.join("\n")
+  const answersArr   = Array.isArray(riddle.answer) ? riddle.answer : [riddle.answer]
+  const hasMultiple  = answersArr.length > 1
   const otherAnswers = answersArr.slice(1)
-  const attemptsSoFar = state.chat.filter((m) => m.role === "user").length
 
   const preknown = isExactMatch
     ? `NOTE: The system has verified this guess is an EXACT CORRECT MATCH. Your verdict MUST be "correct". Write a nice congratulation message.`
     : `NOTE: The system has verified this is NOT an exact match. Use your judgment for verdict.`
 
-  const synonymNote = synonymMode
-    ? `\nSYNONYM MODE: This riddle accepts direct synonyms of any listed answer as correct too. When listing other valid answers, end with "...and their synonyms" — nothing else.`
-    : ""
-
   const answersBlock = isExactMatch
-    ? `VALID ANSWERS (all equal): ${answersArr.map((a) => `"${a}"`).join(", ")}${synonymNote}
+    ? `VALID ANSWERS (all equal): ${answersArr.map(a => `"${a}"`).join(", ")}
 → Verdict MUST be "correct".`
     : `PRIVATE ANSWER LOOKUP (use ONLY to judge proximity — do not output any of these words in your message):
-${answersArr.map((a, i) => `  [${i + 1}] "${a}"`).join("\n")}`
+${answersArr.map((a, i) => `  [${i+1}] "${a}"`).join("\n")}`
 
   const primaryAnswerStr = answersArr[0].toUpperCase()
 
@@ -448,7 +479,7 @@ musing, mock confusion, rhetorical question, dry wit, dramatic reaction.
 - "typo": note it looks like a spelling slip, nudge to retry. No answer reveal. Max 2 sentences.
 - "close"/"warm"/"wrong"/"trash": 1 sentence each, independent or riddle imagery only, no answer-related words
   (including no part of the answer phrase, even if the player's own guess contained it).`
-
+  
   console.log("[Groq] Sending judge request for guess:", guess)
   const raw = await callAI(prompt)
   console.log("[Groq] Raw response:", raw)
@@ -470,7 +501,7 @@ musing, mock confusion, rhetorical question, dry wit, dramatic reaction.
   // Safety: if system confirmed exact match, ALWAYS force correct
   // (typo no longer auto-solves, so we must not let an exact match slip through as typo)
   if (isExactMatch && verdict !== "correct") {
-    const others = otherAnswers.length ? ` Also valid: ${otherAnswers.map((a) => a.toUpperCase()).join(", ")}.` : ""
+    const others = otherAnswers.length ? ` Also valid: ${otherAnswers.map(a => a.toUpperCase()).join(", ")}.` : ""
     return { verdict: "correct", message: parsed.message + others }
   }
 
