@@ -101,7 +101,7 @@ body {
 .header-sub {
   font-family: var(--font-mono);
   font-size: 0.88rem;
-  color: var(--text-dim);
+  color: #8a9bb5;
   letter-spacing: 0.04em;
   margin-top: 4px;
 }
@@ -112,7 +112,7 @@ body {
   color: var(--amber);
   letter-spacing: 0.03em;
   margin-top: 8px;
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .blink-cursor {
@@ -130,7 +130,7 @@ body {
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 32px 32px;
+  padding: 24px 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -153,10 +153,11 @@ body {
 
 .stat-label { color: var(--text-muted); }
 .stat-value { font-size: 0.82rem; color: var(--text); }
-.stat-untouched { color: var(--text-dim); }
-.stat-tried     { color: var(--cyan); }
-.stat-solved    { color: var(--green); text-shadow: var(--glow-green); }
-.stat-gaveup    { color: var(--amber); }
+.stat-untouched  { color: var(--text-dim); }
+.stat-tried      { color: var(--cyan); }
+.stat-triedhints { color: #67e8f9; }
+.stat-solved     { color: var(--green); text-shadow: var(--glow-green); }
+.stat-gaveup     { color: var(--amber); }
 
 .progress-bar-track {
   height: 6px;
@@ -173,10 +174,11 @@ body {
   transition: width 0.4s ease;
 }
 
-.seg-untouched { background: var(--text-muted); opacity: 0.35; }
-.seg-tried     { background: var(--cyan); opacity: 0.7; }
-.seg-solved    { background: var(--green); box-shadow: var(--glow-green); }
-.seg-gaveup    { background: var(--amber); opacity: 0.7; }
+.seg-untouched  { background: var(--text-muted); opacity: 0.35; }
+.seg-tried      { background: var(--cyan); opacity: 0.7; }
+.seg-triedhints { background: #67e8f9; opacity: 0.55; }
+.seg-solved     { background: var(--green); box-shadow: var(--glow-green); }
+.seg-gaveup     { background: var(--amber); opacity: 0.7; }
 
 /* ── MAIN BOARD ───────────────────────────────────────────── */
 .riddle-board {
@@ -297,19 +299,18 @@ body {
 
 .footer-disclaimer {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-muted);
+  font-size: 0.68rem;
+  color: #6a7a96;
   letter-spacing: 0.03em;
   line-height: 1.7;
   max-width: 760px;
   margin: 0 auto;
-  opacity: 0.7;
 }
 
 .footer-credit {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  color: #7a8ca8;
   letter-spacing: 0.08em;
 }
 
@@ -329,6 +330,62 @@ body {
   text-shadow: var(--glow-cyan);
   opacity: 0.85;
 }
+
+/* ── HINT DOTS ON TILES ───────────────────────────────────── */
+.tile-hint-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+.hint-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+  opacity: 0.6;
+  box-shadow: 0 0 4px rgba(255,183,0,0.4);
+}
+
+/* ── DIFFICULTY BREAKDOWN ─────────────────────────────────── */
+.difficulty-breakdown {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.diff-stat {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.diff-label {
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.diff-value {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.diff-total    { color: var(--text); }
+.diff-easy     { color: var(--green); }
+.diff-moderate { color: var(--cyan);  }
+.diff-tough    { color: var(--amber); }
+.diff-master   { color: var(--red);   }
 
 /* ── RESET SECTION ────────────────────────────────────────── */
 .reset-section {
@@ -868,23 +925,27 @@ body {
 
 .bg-line {
   position: absolute;
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, rgba(0, 212, 255, 0.12), transparent);
+  width: 2px;
+  border-radius: 1px;
   animation: lineDrift linear infinite;
 }
 
-.bg-line-1 { left: 8%;  animation-duration: 14s; animation-delay: 0s;    height: 100px; }
-.bg-line-2 { left: 23%; animation-duration: 19s; animation-delay: -5s;   height: 60px;  background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.09), transparent); }
-.bg-line-3 { left: 55%; animation-duration: 16s; animation-delay: -8s;   height: 90px;  }
-.bg-line-4 { left: 74%; animation-duration: 22s; animation-delay: -3s;   height: 70px;  background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.07), transparent); }
-.bg-line-5 { left: 89%; animation-duration: 12s; animation-delay: -11s;  height: 50px;  }
+.bg-line-1  { left: 5%;  height: 140px; animation-duration: 13s; animation-delay: 0s;    background: linear-gradient(to bottom, transparent, rgba(0,212,255,0.22), transparent); }
+.bg-line-2  { left: 14%; height: 90px;  animation-duration: 18s; animation-delay: -4s;   background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.18), transparent); }
+.bg-line-3  { left: 23%; height: 170px; animation-duration: 15s; animation-delay: -9s;   background: linear-gradient(to bottom, transparent, rgba(0,212,255,0.18), transparent); }
+.bg-line-4  { left: 34%; height: 110px; animation-duration: 20s; animation-delay: -2s;   background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.15), transparent); }
+.bg-line-5  { left: 45%; height: 130px; animation-duration: 11s; animation-delay: -7s;   background: linear-gradient(to bottom, transparent, rgba(0,212,255,0.20), transparent); }
+.bg-line-6  { left: 56%; height: 80px;  animation-duration: 17s; animation-delay: -12s;  background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.16), transparent); }
+.bg-line-7  { left: 66%; height: 150px; animation-duration: 14s; animation-delay: -3s;   background: linear-gradient(to bottom, transparent, rgba(0,212,255,0.18), transparent); }
+.bg-line-8  { left: 75%; height: 100px; animation-duration: 22s; animation-delay: -6s;   background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.14), transparent); }
+.bg-line-9  { left: 84%; height: 120px; animation-duration: 16s; animation-delay: -10s;  background: linear-gradient(to bottom, transparent, rgba(0,212,255,0.20), transparent); }
+.bg-line-10 { left: 93%; height: 85px;  animation-duration: 12s; animation-delay: -1s;   background: linear-gradient(to bottom, transparent, rgba(0,255,136,0.17), transparent); }
 
 @keyframes lineDrift {
-  0%   { top: -120px; opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { top: calc(100vh + 120px); opacity: 0; }
+  0%   { top: -180px; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: calc(100vh + 180px); opacity: 0; }
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */

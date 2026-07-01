@@ -21,6 +21,11 @@
     <span class="bg-line bg-line-3"></span>
     <span class="bg-line bg-line-4"></span>
     <span class="bg-line bg-line-5"></span>
+    <span class="bg-line bg-line-6"></span>
+    <span class="bg-line bg-line-7"></span>
+    <span class="bg-line bg-line-8"></span>
+    <span class="bg-line bg-line-9"></span>
+    <span class="bg-line bg-line-10"></span>
   </div>
 
   <!-- HEADER -->
@@ -47,6 +52,7 @@
       <span class="stat-item"><span class="stat-label">Total</span> <span class="stat-value" id="statTotal">0</span></span>
       <span class="stat-item"><span class="stat-label">Untouched</span> <span class="stat-value stat-untouched" id="statUntouched">0</span></span>
       <span class="stat-item"><span class="stat-label">Tried</span> <span class="stat-value stat-tried" id="statTried">0</span></span>
+      <span class="stat-item"><span class="stat-label">Tried w/ Hints</span> <span class="stat-value stat-triedhints" id="statTriedHints">0</span></span>
       <span class="stat-item"><span class="stat-label">Solved</span> <span class="stat-value stat-solved" id="statSolved">0</span></span>
       <span class="stat-item"><span class="stat-label">Gave Up</span> <span class="stat-value stat-gaveup" id="statGaveup">0</span></span>
     </div>
@@ -59,6 +65,30 @@
   <main class="riddle-board" id="riddleBoard">
     <!-- Tiles injected by JS -->
   </main>
+
+  <!-- DIFFICULTY BREAKDOWN -->
+  <div class="difficulty-breakdown" id="difficultyBreakdown">
+    <div class="diff-stat">
+      <span class="diff-label diff-total">Total</span>
+      <span class="diff-value diff-total" id="diffTotal">0</span>
+    </div>
+    <div class="diff-stat">
+      <span class="diff-label diff-easy">Easy</span>
+      <span class="diff-value diff-easy" id="diffEasy">0</span>
+    </div>
+    <div class="diff-stat">
+      <span class="diff-label diff-moderate">Moderate</span>
+      <span class="diff-value diff-moderate" id="diffModerate">0</span>
+    </div>
+    <div class="diff-stat">
+      <span class="diff-label diff-tough">Tough</span>
+      <span class="diff-value diff-tough" id="diffTough">0</span>
+    </div>
+    <div class="diff-stat">
+      <span class="diff-label diff-master">Master</span>
+      <span class="diff-value diff-master" id="diffMaster">0</span>
+    </div>
+  </div>
 
   <!-- RESET SECTION -->
   <div class="reset-section">
@@ -73,7 +103,7 @@
     <p class="footer-disclaimer">
       The riddles in this page are all originally written by the author and not copied. However various sources including already existing riddles or poems might have been used. Users are free to suggest any answers (not included and valid in any riddle) or improvements on the page or riddles itself.
     </p>
-    <p class="footer-credit">made by <span class="footer-name">Khushil</span> • 2026</p>
+    <p class="footer-credit">Made by <span class="footer-name">Khushil</span>, AI coded in Claude • 2026</p>
     <p class="footer-credit">
       <a href="https://github.com/KhushilVarshney" target="_blank" rel="noopener noreferrer" class="footer-link">github / KhushilVarshney</a>
     </p>

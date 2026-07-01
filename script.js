@@ -64,7 +64,6 @@ function buildBoard() {
     tile.dataset.difficulty = riddle.difficulty
     tile.dataset.status = state.status
 
-    // Odd IDs anchor left, even IDs anchor right — clean, no randomness
     if (riddle.id % 2 !== 0) {
       tile.style.marginLeft = "0"
       tile.style.marginRight = "auto"
@@ -73,17 +72,27 @@ function buildBoard() {
       tile.style.marginRight = "0"
     }
 
+    const hintDots = renderHintDots(state.hintCount || 0)
+
     tile.innerHTML = `
       <span class="tile-id">#${String(riddle.id).padStart(2, "0")}</span>
       <span class="tile-name">${riddle.name}</span>
       <span class="tile-difficulty difficulty-${riddle.difficulty}">${riddle.difficulty}</span>
       <span class="tile-status ${STATUS_CLASS[state.status]}">${STATUS_LABEL[state.status]}</span>
+      ${hintDots}
     `
     tile.addEventListener("click", () => openDevice(riddle.id))
     board.appendChild(tile)
   })
 
   updateProgress()
+  updateDifficultyBreakdown()
+}
+
+function renderHintDots(hintCount) {
+  if (!hintCount) return '<span class="tile-hint-dots"></span>'
+  const dots = Array.from({ length: Math.min(hintCount, 2) }, () => '<span class="hint-dot"></span>').join("")
+  return `<span class="tile-hint-dots">${dots}</span>`
 }
 
 function updateTile(id) {
@@ -94,36 +103,45 @@ function updateTile(id) {
   const statusEl = tile.querySelector(".tile-status")
   statusEl.className = `tile-status ${STATUS_CLASS[state.status]}`
   statusEl.textContent = STATUS_LABEL[state.status]
+  const dotsEl = tile.querySelector(".tile-hint-dots")
+  if (dotsEl) dotsEl.outerHTML = renderHintDots(state.hintCount || 0)
   updateProgress()
 }
 
 function updateProgress() {
-  const total    = RIDDLES.length
-  let tried = 0, solved = 0, gaveup = 0
+  const total = RIDDLES.length
+  let tried = 0, triedHints = 0, solved = 0, gaveup = 0
 
   RIDDLES.forEach(r => {
-    const s = getState(r.id).status
-    if (s === STATUS.SOLVED)      solved++
-    else if (s === STATUS.GAVEUP) gaveup++
-    else if (s === STATUS.TRIED)  tried++
+    const s = getState(r.id)
+    const status = s.status
+    const hasHints = (s.hintCount || 0) > 0
+
+    if (status === STATUS.SOLVED)       solved++
+    else if (status === STATUS.GAVEUP)  gaveup++
+    else if (status === STATUS.TRIED) {
+      if (hasHints) triedHints++
+      else          tried++
+    }
   })
 
-  const untouched = total - tried - solved - gaveup
+  const untouched = total - tried - triedHints - solved - gaveup
 
-  document.getElementById("statTotal").textContent     = total
-  document.getElementById("statUntouched").textContent = untouched
-  document.getElementById("statTried").textContent     = tried
-  document.getElementById("statSolved").textContent    = solved
-  document.getElementById("statGaveup").textContent    = gaveup
+  document.getElementById("statTotal").textContent      = total
+  document.getElementById("statUntouched").textContent  = untouched
+  document.getElementById("statTried").textContent      = tried
+  document.getElementById("statTriedHints").textContent = triedHints
+  document.getElementById("statSolved").textContent     = solved
+  document.getElementById("statGaveup").textContent     = gaveup
 
-  // Build segmented progress bar
   const track = document.getElementById("progressBarTrack")
   track.innerHTML = ""
   const segments = [
-    { pct: solved / total,    cls: "seg-solved"    },
-    { pct: tried / total,     cls: "seg-tried"     },
-    { pct: gaveup / total,    cls: "seg-gaveup"    },
-    { pct: untouched / total, cls: "seg-untouched" },
+    { pct: solved / total,      cls: "seg-solved"     },
+    { pct: tried / total,       cls: "seg-tried"      },
+    { pct: triedHints / total,  cls: "seg-triedhints" },
+    { pct: gaveup / total,      cls: "seg-gaveup"     },
+    { pct: untouched / total,   cls: "seg-untouched"  },
   ]
   segments.forEach(({ pct, cls }) => {
     if (pct <= 0) return
@@ -132,6 +150,16 @@ function updateProgress() {
     seg.style.width = `${(pct * 100).toFixed(2)}%`
     track.appendChild(seg)
   })
+}
+
+function updateDifficultyBreakdown() {
+  const counts = { easy: 0, moderate: 0, tough: 0, master: 0 }
+  RIDDLES.forEach(r => { if (counts[r.difficulty] !== undefined) counts[r.difficulty]++ })
+  document.getElementById("diffTotal").textContent    = RIDDLES.length
+  document.getElementById("diffEasy").textContent     = counts.easy
+  document.getElementById("diffModerate").textContent = counts.moderate
+  document.getElementById("diffTough").textContent    = counts.tough
+  document.getElementById("diffMaster").textContent   = counts.master
 }
 
 // ── DEVICE OPEN / CLOSE ──────────────────────────────────────
@@ -353,6 +381,13 @@ async function handleHint() {
   renderHints(riddle)
   addSystemMsg(hintText, "hint-msg", null, state)
 
+  // Update hint dots on the tile live
+  const tile = document.querySelector(`.riddle-tile[data-id="${currentRiddleId}"]`)
+  if (tile) {
+    const dotsEl = tile.querySelector(".tile-hint-dots")
+    if (dotsEl) dotsEl.outerHTML = renderHintDots(hintCount)
+  }
+
   saveData()
   scrollChat()
 }
@@ -411,10 +446,10 @@ If verdict is "correct": message MUST literally name the answer "${primaryAnswer
 
 BEFORE JUDGING: normalize both the guess and the answer by (1) removing filler words — a, an, the,
 of, on, for, with, without, in, at, to — and (2) ignoring word order entirely. Compare only the
-remaining content words as an unordered set. This normalized comparison is what categories 1, 2, and
-3 below are based on — apply it consistently everywhere, for example all of these count as the SAME guess for judging:
+remaining content words as an unordered set. This normalized comparison is what categories 1 to
+5 below are based on — apply it consistently everywhere, for example all of these count as the SAME guess for judging:
       "lost camel", "camel lost", "the lost camel", "a lost camel", "lost the camel", "for camel lost"
-      — they all normalize to {lost, camel} which matches answer "lost camel". 
+      — they all normalize to {lost, camel}.
 
 VERDICT — pick exactly one, checking 1→6 in order. Test each rule explicitly before rejecting it.
 For multi line guess or answers, judge after understanding the meaning of the whole phrase as a whole to compare. For example "not correct" as a whole is close to "incorrect".
@@ -479,7 +514,7 @@ musing, mock confusion, rhetorical question, dry wit, dramatic reaction.
 - "typo": note it looks like a spelling slip, nudge to retry. No answer reveal. Max 2 sentences.
 - "close"/"warm"/"wrong"/"trash": 1 sentence each, independent or riddle imagery only, no answer-related words
   (including no part of the answer phrase, even if the player's own guess contained it).`
-  
+
   console.log("[Groq] Sending judge request for guess:", guess)
   const raw = await callAI(prompt)
   console.log("[Groq] Raw response:", raw)
