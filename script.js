@@ -56,6 +56,17 @@ function buildBoard() {
   const board = document.getElementById("riddleBoard")
   board.innerHTML = ""
 
+  // Group-based left/right layout with master-centering
+  // Walk riddles in order, accumulating groups of 2 or 3 before flipping side.
+  // Master riddles always center and reset the group.
+  let side = "left"           // current side for non-master tiles
+  let groupCount = 0          // how many tiles placed in current group
+  let groupSize = randomGroupSize() // 2 or 3
+
+  function randomGroupSize() { return Math.random() < 0.55 ? 2 : 3 }
+
+  const isMaster = (r) => r.difficulty === "master"
+
   RIDDLES.forEach((riddle) => {
     const state = getState(riddle.id)
     const tile = document.createElement("div")
@@ -64,18 +75,43 @@ function buildBoard() {
     tile.dataset.difficulty = riddle.difficulty
     tile.dataset.status = state.status
 
-    if (riddle.id % 2 !== 0) {
-      tile.style.marginLeft = "0"
-      tile.style.marginRight = "auto"
-    } else {
+    if (isMaster(riddle)) {
+      // Master: center, end current group, flip side for next group after this
       tile.style.marginLeft = "auto"
-      tile.style.marginRight = "0"
+      tile.style.marginRight = "auto"
+      tile.dataset.master = "true"
+      // After master, flip side and start a fresh group
+      side = side === "left" ? "right" : "left"
+      groupCount = 0
+      groupSize = randomGroupSize()
+    } else {
+      // Normal tile: place on current side
+      if (side === "left") {
+        tile.style.marginLeft = "0"
+        tile.style.marginRight = "auto"
+      } else {
+        tile.style.marginLeft = "auto"
+        tile.style.marginRight = "0"
+      }
+      groupCount++
+      if (groupCount >= groupSize) {
+        // Group full — flip side and pick new group size
+        side = side === "left" ? "right" : "left"
+        groupCount = 0
+        groupSize = randomGroupSize()
+      }
     }
+
+    // ID display: master riddles (900s) show "# !! #", others show 3-digit padded
+    const isMasterRiddle = riddle.id >= 900
+    const idDisplay = isMasterRiddle
+      ? `<span class="tile-id tile-id-master"># !! #</span>`
+      : `<span class="tile-id">#${String(riddle.id).padStart(3, "0")}</span>`
 
     const hintDots = renderHintDots(state.hintCount || 0)
 
     tile.innerHTML = `
-      <span class="tile-id">#${String(riddle.id).padStart(2, "0")}</span>
+      ${idDisplay}
       <span class="tile-name">${riddle.name}</span>
       <span class="tile-difficulty difficulty-${riddle.difficulty}">${riddle.difficulty}</span>
       <span class="tile-status ${STATUS_CLASS[state.status]}">${STATUS_LABEL[state.status]}</span>
@@ -169,7 +205,10 @@ function openDevice(id) {
   const state = getState(id)
   hintCount = state.hintCount || 0
 
-  document.getElementById("deviceLabel").textContent = `RIDDLE #${String(id).padStart(2, "0")}`
+  const isMasterRiddle = riddle.id >= 900
+  document.getElementById("deviceLabel").textContent = isMasterRiddle
+    ? "RIDDLE  # !! #"
+    : `RIDDLE #${String(id).padStart(3, "0")}`
 
   const badge = document.getElementById("deviceDifficulty")
   badge.textContent = riddle.difficulty.toUpperCase()

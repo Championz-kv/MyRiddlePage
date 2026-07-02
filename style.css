@@ -208,6 +208,21 @@ body {
   user-select: none;
 }
 
+/* Master riddles: centered, slightly wider, red glow border */
+.riddle-tile[data-master="true"] {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: clamp(340px, 72%, 720px);
+  border-color: rgba(255, 68, 102, 0.3);
+  box-shadow: 0 0 16px rgba(255, 68, 102, 0.06);
+}
+
+.riddle-tile[data-master="true"]:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(255,68,102,0.3), 0 4px 24px rgba(255,68,102,0.12);
+  transform: translateX(0) scale(1.005);
+}
+
 .riddle-tile::before {
   content: '';
   position: absolute;
@@ -233,7 +248,7 @@ body {
 .riddle-tile[data-difficulty="easy"]::before     { background: var(--green); }
 .riddle-tile[data-difficulty="moderate"]::before { background: var(--cyan); }
 .riddle-tile[data-difficulty="tough"]::before    { background: var(--amber); }
-.riddle-tile[data-difficulty="master"]::before   { background: var(--red); }
+.riddle-tile[data-difficulty="master"]::before   { background: var(--red); box-shadow: 0 0 8px #ff446666; }
 
 .tile-id {
   font-family: var(--font-mono);
@@ -242,6 +257,20 @@ body {
   min-width: 36px;
   letter-spacing: 0.06em;
   flex-shrink: 0;
+}
+
+/* Master riddle ID — "# !! #" in red with a pulse glow */
+.tile-id-master {
+  color: var(--red);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  min-width: 48px;
+  animation: masterPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes masterPulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(255,68,102,0.6); opacity: 1; }
+  50%       { text-shadow: 0 0 14px rgba(255,68,102,0.9); opacity: 0.8; }
 }
 
 .tile-name {

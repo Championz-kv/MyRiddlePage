@@ -21,7 +21,7 @@ const RIDDLES = [
       "Think of something shared by an elephant, a tree, and many cars.",
     ],
     answer: "trunk",
-    synonym: false,
+    
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ const RIDDLES = [
       "You rely on 'it' every day, but 'it' isn't something you can physically hold.",
     ],
     answer: "light",
-    synonym: false,
+    
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ const RIDDLES = [
     ],
     hints: ["Board games often can't begin without 'it'.", "Its outcome depends entirely on which face lands upward."],
     answer: ["dice", "die"],
-    synonym: false,
+    
   },
   {
     id: 4,
@@ -76,7 +76,7 @@ const RIDDLES = [
     ],
     hints: ["It's the one certainty shared by everyone.", "Every living being is destined to encounter 'it' once."],
     answer: "death",
-    synonym: false,
+    
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const RIDDLES = [
       "Different sports use different versions, but they all serve 'it'.",
     ],
     answer: ["shuttlecock", "tennis ball", "table tennis ball"],
-    synonym: false,
+    
   },
   {
     id: 6,
@@ -120,12 +120,12 @@ const RIDDLES = [
       "It begins as the least valuable piece on the board.",
     ],
     answer: "pawn",
-    synonym: false,
+    
   },
   {
     id: 7,
     name: "The Empty Thought",
-    difficulty: "moderate",
+    difficulty: "easy",
     lines: [
       "'It' is there when you don't have anything,",
       "If you think of 'it', you can never think a thing.",
@@ -138,7 +138,7 @@ const RIDDLES = [
     ],
     hints: ["It is the absence rather than the presence of something.", "The answer itself describes emptiness."],
     answer: "nothing",
-    synonym: false,
+    
   },
   {
     id: 8,
@@ -159,7 +159,7 @@ const RIDDLES = [
       "It's not related to anythings said above, but their spellings.",
     ],
     answer: ["the letter w", "w", "the alphabet w"],
-    synonym: false,
+    
   },
   {
     id: 9,
@@ -182,9 +182,9 @@ const RIDDLES = [
       "Think of insects, aircraft, music, and people, it's more commonly known as a controllable flying object though.",
     ],
     answer: "drone",
-    synonym: false,
+    
   },
-  {
+  { 
     id: 10,
     name: "Run on it, Do it, Drive on it",
     difficulty: "tough",
@@ -201,7 +201,7 @@ const RIDDLES = [
       "Railways are closely associated with one of its meanings.",
     ],
     answer: "track",
-    synonym: false,
+    
   },
   {
     id: 11,
@@ -227,7 +227,7 @@ const RIDDLES = [
       "The location described is completely wrong for where 'it' belongs.",
     ],
     answer: "lost camel",
-    synonym: false,
+    
   },
   {
     id: 12,
@@ -252,12 +252,12 @@ const RIDDLES = [
       "The answer relates to how adding that number of things not let the container be empty anymore.",
     ],
     answer: ["one", "1"],
-    synonym: false,
+    
   },
   {
     id: 13,
     name: "Rules and Contradictions",
-    difficulty: "moderate",
+    difficulty: "easy",
     lines: [
       "'It' is where success comes before work,",
       "'it' is where a chick comes before egg,",
@@ -273,7 +273,7 @@ const RIDDLES = [
       "It contains countless words without physically containing the things they describe.",
     ],
     answer: "dictionary",
-    synonym: false,
+    
   },
   {
     id: 14,
@@ -290,7 +290,7 @@ const RIDDLES = [
       "The joke depends on a phrase sounding like a single word.",
     ],
     answer: ["dine-a-sour", "dinosaur"],
-    synonym: false,
+    
   },
   {
     id: 15,
@@ -303,7 +303,7 @@ const RIDDLES = [
     ],
     hints: ["The 'eye' is part of its spelling, not its anatomy.", "Peeling 'it' is enough to make many people cry."],
     answer: "onion",
-    synonym: false,
+    
   },
   {
     id: 16,
@@ -324,12 +324,12 @@ const RIDDLES = [
       "The answer is formed by combining two consecutive digits.",
     ],
     answer: ["nine", "9"],
-    synonym: false,
+    
   },
   {
     id: 17,
     name: "The Timeless Guard",
-    difficulty: "moderate",
+    difficulty: "easy",
     lines: [
       "While walking in the nature, I ended up in a city,",
       "Markets were closed, doors were shut, just a person asking for pity.",
@@ -342,7 +342,7 @@ const RIDDLES = [
     ],
     hints: ["Split the word into two familiar English words.", "Its job is to keep watch, not to tell time."],
     answer: "watchdog",
-    synonym: false,
+    
   },
   {
     id: 18,
@@ -356,7 +356,7 @@ const RIDDLES = [
     ],
     hints: ["You probably have one somewhere in your house.", "Blend the names of the two things together."],
     answer: "carpet",
-    synonym: false,
+    
   },
   {
     id: 19,
@@ -374,7 +374,7 @@ const RIDDLES = [
     ],
     hints: ["Pronouncing it correctly still means you've said it.", "The joke is about saying the word itself."],
     answer: "incorrect",
-    synonym: false,
+    
   },
   {
     id: 20,
@@ -399,12 +399,55 @@ const RIDDLES = [
       "The final line directly describes every previous claim.",
     ],
     answer: ["wrong", "misconceptions", "incorrect", "untrue", "myth", "inaccurate", "faulty"],
-    synonym: false,
+    
+  },
+  {
+    id: 901,
+    name: "Riddle Domain: Lighting Up",
+    difficulty: "master",
+    lines: [
+      "You went to the domain of riddles,",
+      "your task now is to think up a sequence,",
+      "on the dark wall there is, a mark \"three\",",
+      "above the picture of Nightingale Florence.",
+      "You are provided with some set of rules,",
+      "on a paper which is wrinkly and crinkly,",
+      "paper is not to be burnt at the last,",
+      "so make sure, the rules, you carefully see.",
+      "",
+      "RULES (as on the crinkly-wrinkly paper)",
+      "",
+      "1. Those that are meant, to shine using wire,",
+      "light them just after putting, something on fire.",
+      "",
+      "2. Those that produce, too much of sound,",
+      "light them before the paper, that too on ground.",
+      "",
+      "3. The first two you have to light, the ones that gets used,",
+      "you have to burn them, they'll finish, don't get confused.",
+      "",
+      "4. Also, burn the firecracker, only using the candle,",
+      "take care you don't get hurt, or burn up your sandal.",
+      "",
+      "Suddenly and magically, in front of you appears,",
+      "a short white 'candle' and a noisemaker 'cracker',",
+      "and an electric 'lamp' and a 900w 'bulb',",
+      "yes really! That is written on the wrapper.",
+      "Also, you got all the tools to light,",
+      "like the wires, the switches and powerful battery,",
+      "just find the correct sequence, and light up,",
+      "and walk away with the treasure for free.",
+      "",
+      "What is 'it' that you will light up first?",
+      "Find the 'it' before the domain god gives you curse."
+    ],
+    hints: ["Use pen and paper and arrange the things- candle, cracker, lamp, bulb, paper in correct order.", "Are you sure you'd burn one of these first?"],
+    answer: ["lighter","matches","match"]
   },
   {
     id: 21,
     name: "The Bus You Can't Ride",
-    difficulty: "moderate",
+    difficulty: "easy",
     lines: [
       "Find the 'it', if 'it' is a bus which you can't ride,",
       "if huge, 'it' is a stress, which you would never like,",
@@ -413,7 +456,7 @@ const RIDDLES = [
     ],
     hints: ["The first line is a wordplay, not an actual vehicle.", "Students often ask for 'it' before exams."],
     answer: "syllabus",
-    synonym: false,
+    
   },
   {
     id: 22,
@@ -433,7 +476,7 @@ const RIDDLES = [
     ],
     hints: ["Take the description completely literally.", "The answer is exactly what the riddle keeps describing!"],
     answer: "an ocean without water",
-    synonym: false,
+    
   },
   {
     id: 23,
@@ -460,7 +503,7 @@ const RIDDLES = [
     ],
     hints: ["The 'coat' isn't clothing.", "Walls and vehicles often receive one for protection and appearance."],
     answer: "coat of paint",
-    synonym: false,
+    
   },
   {
     id: 25,
@@ -478,7 +521,7 @@ const RIDDLES = [
     ],
     hints: ["Its tears are essential for you, and in fact everyone", "A darker one often arrives with thunder."],
     answer: "clouds",
-    synonym: false,
+    
   },
   {
     id: 26,
@@ -497,7 +540,7 @@ const RIDDLES = [
       "The same name belongs to both a Roman god and a planet.",
     ],
     answer: "mercury",
-    synonym: false,
+    
   },
   {
     id: 27,
@@ -520,7 +563,7 @@ const RIDDLES = [
       "You'd be glad to have one if it suddenly started raining.",
     ],
     answer: "umbrella",
-    synonym: false,
+    
   },
   {
     id: 28,
@@ -539,7 +582,7 @@ const RIDDLES = [
       "Computers execute 'it' line by line.",
     ],
     answer: "program",
-    synonym: false,
+    
   },
   {
     id: 29,
@@ -560,7 +603,7 @@ const RIDDLES = [
       "The complete word is commonly used for a female lead in stories.",
     ],
     answer: "heroine",
-    synonym: false,
+    
   },
   {
     id: 30,
@@ -577,7 +620,7 @@ const RIDDLES = [
       "Nothing described changes the object itself.",
     ],
     answer: "stone",
-    synonym: false,
+    
   },
   {
     id: 31,
@@ -595,12 +638,12 @@ const RIDDLES = [
     ],
     hints: ["'It' carries conversations, not passengers.", "Think of the physical connection rather than a device."],
     answer: ["telephone wire", "telephone line", "communication cable"],
-    synonym: false,
+    
   },
   {
     id: 32,
     name: "Climbing Without Moving",
-    difficulty: "moderate",
+    difficulty: "easy",
     lines: [
       "'It' is made of blocks, or lines one or few,",
       "'it' may show heart rate, performance or time,",
@@ -613,7 +656,7 @@ const RIDDLES = [
     ],
     hints: ["'It' visually represents information.", "Bar, line, and pie are common varieties."],
     answer: "graph",
-    synonym: false,
+    
   },
   {
     id: 33,
@@ -635,7 +678,7 @@ const RIDDLES = [
     ],
     hints: ["Too much or too little of it can both be dangerous.", "Your body is largely made of it."],
     answer: "water",
-    synonym: false,
+    
   },
   {
     id: 34,
@@ -655,7 +698,7 @@ const RIDDLES = [
       "Its behavior changes depending on where the light comes from.",
     ],
     answer: "shadow",
-    synonym: false,
+    
   },
   {
     id: 35,
@@ -677,6 +720,45 @@ const RIDDLES = [
       "Several clues point toward science, but they don't all belong to the same field.",
     ],
     answer: ["gene-rat-ion","generation"],
-    synonym: false,
+    
+  },
+  {
+    id: 902,
+    name: "Riddle Domain: Markings and Doors",
+    difficulty: "master",
+    lines: [
+      "You are once again in the domain of riddles,",
+      "your task now is to exit from the correct gate;",
+      "Octagonal room with a door at each wall there is,",
+      "you'll get a curse if you chose wrong or choose late.",
+      "Every door has a mark, of a circle, square or triangle,",
+      "and above them are eyes either closed or open;",
+      "Suddenly all marks disappear, and again, crinkly-wrinkly appears,",
+      "the paper will help you, till the escape is done.",
+      "",
+      "INFO (as on the crinkly-wrinkly paper)-",
+      "",
+      "1. There are three open eyes, one for each shape on the doors,",
+      "entry and exit are identical, behind which there are no deadly boars.",
+      "",
+      "2. Number of squares and circles are equal, and four closed eyes are in row,",
+      "strange sounds come from opened-eyed doors, due to the high volt current flow.",
+      "",
+      "3. When numbering from square with eye not shut, and second with eye open,",
+      "the 4th & 5th doors have circles on them, where one of the eye is open.",
+      "",
+      "4. The triangles are on same position from ends, and the no.6 is square,",
+      "also the last three eyes above doors are closed, opposite to centres- lie the squares.",
+      "",
+      "If entry is different,",
+      "from neighbours by shape,",
+      "which is 'it' from which you'll",
+      "loot treasure and escape?",
+      "",
+      "",
+      "Note: Answer by door number, shape and eye, like- 4 square open",
+    ],
+    hints: ["Use pen and paper and arrange the markings on doors.", "1st door is square close, also in orthogonal room, 4th distance doors are opposites, interpret other hints similarly."],
+    answer: ["8 square close","eight square close","8 square closed","8th square closed eye"]
   },
 ]
