@@ -253,7 +253,7 @@ body {
 .tile-id {
   font-family: var(--font-mono);
   font-size: 0.88rem;
-  color: var(--text-muted);
+  color: #7a8ca8;
   min-width: 36px;
   letter-spacing: 0.06em;
   flex-shrink: 0;
