@@ -20,7 +20,7 @@ const RIDDLES = [
       "The same word refers to a body part, a treasure holder, and a vehicle compartment.",
       "Think of something shared by an elephant, a tree, and many cars.",
     ],
-    answer: "trunk",
+    answer: ["trunk","trunks"]
     
   },
   {
@@ -75,7 +75,7 @@ const RIDDLES = [
       "and, you well know you will get 'it', it's enough, so guess the 'it'.",
     ],
     hints: ["It's the one certainty shared by everyone.", "Every living being is destined to encounter 'it' once."],
-    answer: "death",
+    answer: ["death","demise"]
     
   },
   {
@@ -96,7 +96,7 @@ const RIDDLES = [
       "The clue 'love' not means the relation and liking here.",
       "Different sports use different versions, but they all serve 'it'.",
     ],
-    answer: ["shuttlecock", "tennis ball", "table tennis ball"],
+    answer: ["shuttlecock", "tennis ball", "table tennis ball","shuttlecocks", "tennis balls", "table tennis balls",],
     
   },
   {
@@ -119,7 +119,7 @@ const RIDDLES = [
       "He and it are two different meaning of the same answer.",
       "It begins as the least valuable piece on the board.",
     ],
-    answer: "pawn",
+    answer: ["pawn","pawns"]
     
   },
   {
@@ -181,7 +181,7 @@ const RIDDLES = [
       "Every clue points to a different meaning of the same word.",
       "Think of insects, aircraft, music, and people, it's more commonly known as a controllable flying object though.",
     ],
-    answer: "drone",
+    answer: ["drone","drones"]
     
   },
   { 
@@ -272,7 +272,7 @@ const RIDDLES = [
       "Some specific order explains several of the clues.",
       "It contains countless words without physically containing the things they describe.",
     ],
-    answer: "dictionary",
+    answer: ["dictionary","dictionaries"]
     
   },
   {
@@ -302,7 +302,7 @@ const RIDDLES = [
       "Find the 'it', I accept, this riddle is not original.",
     ],
     hints: ["The 'eye' is part of its spelling, not its anatomy.", "Peeling 'it' is enough to make many people cry."],
-    answer: "onion",
+    answer: ["onion","onions"]
     
   },
   {
@@ -439,7 +439,10 @@ const RIDDLES = [
       "and walk away with the treasure for free.",
       "",
       "What is 'it' that you will light up first?",
-      "Find the 'it' before the domain god gives you curse."
+      "Find the 'it' before the domain god gives you curse.",
+      "",
+      "",
+      "Note: Though 'it' is the first thing you'll light, you can solve the whole sequence in which you have to light up.",
     ],
     hints: ["Use pen and paper and arrange the things- candle, cracker, lamp, bulb, paper in correct order.", "Are you sure you'd burn one of these first?"],
     answer: ["lighter","matches","match"]
@@ -520,7 +523,7 @@ const RIDDLES = [
       "the next one is coming soon!",
     ],
     hints: ["Its tears are essential for you, and in fact everyone", "A darker one often arrives with thunder."],
-    answer: "clouds",
+    answer: ["clouds","cloud"]
     
   },
   {
@@ -619,7 +622,7 @@ const RIDDLES = [
       "Its owner, location, and information about 'it' are irrelevant.",
       "Nothing described changes the object itself.",
     ],
-    answer: "stone",
+    answer: ["stone","same stone","still a stone"]
     
   },
   {
@@ -637,7 +640,7 @@ const RIDDLES = [
       "For now, finding the 'it' is your only goal.",
     ],
     hints: ["'It' carries conversations, not passengers.", "Think of the physical connection rather than a device."],
-    answer: ["telephone wire", "telephone line", "communication cable"],
+    answer: ["telephone wire", "telephone line", "communication cable","telephone cable",],
     
   },
   {
@@ -655,7 +658,7 @@ const RIDDLES = [
       "so now this one is done, do you have any guesses ?",
     ],
     hints: ["'It' visually represents information.", "Bar, line, and pie are common varieties."],
-    answer: "graph",
+    answer: ["graph","chart"]
     
   },
   {
