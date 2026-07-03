@@ -783,7 +783,7 @@ const RIDDLES = [
       "The answer is created step by step rather than being found directly.",
       "Several clues point toward science, but they don't all belong to the same field.",
     ],
-    answer: ["gene-rat-ion","generation"],
+    answer: ["maths book","maths textbook","mathematics book","mathematics textbook",],
     
   },
 ]
