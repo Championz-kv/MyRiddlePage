@@ -505,7 +505,7 @@ For multi line guess or answers, judge after understanding the meaning of the wh
    Math expressions (e.g. "4+5" for "9") are NEVER correct — see category 3 instead.
 
 2. "typo" — when guess is the SAME single word as an answer, with:
-   a) 1-2 letters wrong/swapped/missing/added anywhere, and INCLUDING plurals/tense or participle forms. example- "painr"→"paint" ✓, "echu"→"echo" ✓, "carpet"↔"carpets" ✓, "misconception"↔"misconceptions" ✓ (the "s" is simply a typo, consider s,es,ed,ing and such forms as typo).
+   a) 1-2 letters wrong/swapped/missing/added anywhere, and INCLUDING plurals/tense or participle forms. example- "painr"→"paint" ✓, "echu"→"echo" ✓, "carpet"↔"carpets" ✓, "misconception"↔"misconceptions" ✓ (the "s" is simply a typo, consider s,es,ed,ing and such forms as typo too).
    b) Regional spelling variant: "center"↔"centre", "colour"↔"color", "foetus"↔"fetus".
    Typo does NOT solve the riddle — just nudges the player to recheck spelling.
    "carcat" is NOT a typo for "carpet" (different word, just sounds similar) — that's close instead.
@@ -517,10 +517,8 @@ For multi line guess or answers, judge after understanding the meaning of the wh
       match — it has at least one correct content word from the answer but is missing one or more
       others. Answer "lost camel" → guess "camel" (any order/filler variant) is close, guess "lost"
       alone is close. This is different from category 1b, which requires ALL content words present.
-   d) Math/logic expression that YOU verify equals this riddle's answer. Compute it yourself. Answer
-      "nine"(=9), guess "4+5" → 4+5=9 ✓ close. Answer "one"(=1), guess "4+5" → 4+5=9≠1, that's wrong.
 
-4. "warm" — connected through the RIDDLE's context (same field/category/role) but not synonym-level, or anyhow related or connected to the answer in real. "game" or "badminton player" for "shuttlecock" — related via the riddle's sport, so warm like "sleep" and "night". Use this MORE than close — most "right direction" guesses belong here when there's no literal word overlap with the answer. Guess and answer are indirectly and not too closely related with respect to riddle, then they are warm.
+4. "warm" — connected through the RIDDLE's context (same field/category/role) but not synonym-level, or anyhow related or connected to the answer in real. "game" or "badminton player" for "shuttlecock" — related via the riddle's sport, so warm like "sleep" and "night". Use this MORE than close — most "right direction" guesses belong here when there's no literal word overlap with the answer. Guess and answer are indirectly and not too closely related with respect to riddle, then they are warm. If unsure between warm/close, pick warm.
 
 5. "wrong" — no real connection to the actual answer with respect to the riddle or actual meaning. Wrong math (computes to a different number) is also wrong. If unsure between warm/wrong, pick warm.
 
@@ -542,8 +540,7 @@ VARIETY IS REQUIRED — never repeat the same sentence structure. Rotate: playfu
 musing, mock confusion, rhetorical question, dry wit, dramatic reaction.
 
 - "correct": ALWAYS write a genuine warm celebration sentence (not just the bare answer word) AND
-  name the answer explicitly within it (e.g. "Nice work — the answer is COAT OF PAINT!"). Never reply
-  with only the answer and nothing else. ${isExactMatch && hasMultiple ? `Also name other valid answer(s): ${otherAnswers.map(a=>a.toUpperCase()).join(", ")}.` : ""}, if 2 or 3 answers, name all otherwise name any 3 random answers. Name the matched answer first. Max 2 sentences.
+  name the answer explicitly within it (e.g. "Nice work — the answer is COAT OF PAINT!"). ${isExactMatch && hasMultiple ? `Also name other valid answer(s): ${otherAnswers.map(a=>a.toUpperCase()).join(", ")}.` : ""}, if 2 or 3 answers, name all otherwise name any 3 random answers. Name the matched answer first. Max 2 sentences.
 - "typo": note it looks like a spelling slip, nudge to retry. No answer reveal. Max 2 sentences.
 - "close"/"warm"/"wrong"/"trash": 1 sentence each, independent or riddle imagery only, no answer-related words
   (including no part of the answer phrase, even if the player's own guess contained it).`
