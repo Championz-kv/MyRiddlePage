@@ -786,4 +786,28 @@ const RIDDLES = [
     answer: ["maths book","maths textbook","mathematics book","mathematics textbook",],
     
   },
+  {
+    id: 37,
+    name: "The Eternal Consumer",
+    difficulty: "easy",
+    lines: [
+      "'It' is always hungry, 'it' is always greedy,",
+      "Yet is used in winters, by poor and the needy.",
+      "'It' has no stomach, no mouth to eat,",
+      "No eyes, no ears, no nose, no feet,",
+      "Yet 'it' needs food and air to live,",
+      "And after death, 'it' has nothing to give.",
+      "'It' can be blue, yellow, orange and red,",
+      "If on you, you'll be needing a med.",
+      "The riddle is complete, now use your brain,",
+      "Guess the 'it', or this will go in vain!",
+    ],
+
+    hints: [
+      "'It' cannot live on its own.",
+      "'It' keeps you warm in winter, but if it touches you, it can leave a painful burn.",
+    ],
+    answer: "fire",
+    
+  },
 ]
