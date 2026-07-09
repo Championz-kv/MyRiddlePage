@@ -810,4 +810,44 @@ const RIDDLES = [
     answer: "fire",
     
   },
+  {
+    id: 38,
+    name: "A Deeper Word",
+    difficulty: "moderate",
+    lines: [
+      "What is 'it'—",
+      "That can be played with, by someone else,",
+      "Can be read without, any words in a sense,",
+      "May be sad or glad, or 'it' may be dense,",
+      "Is hid many-a-times, and can be secret hence?",
+      "What is 'it'?"
+    ],
+
+    hints: ["'It' speaks the loudest, even when no voice is heard.",
+"Everyone has 'it', though some choose to hide it well."
+    ],
+    answer: ["feelings","feeling","emotions","emotion"],
+    
+  },
+  {
+    id: 39,
+    name: "Kept Leaving :(",
+    difficulty: "easy",
+    lines: [
+      "When you were small, you had 'it' none,",
+      "'It' grew in numbers as you grew,",
+      "When 'they' all finally came, 'they' started betraying,",
+      "And left one by one, sometimes together a few.",
+      "Finally you got some final ones with you,",
+      "If you don't care for 'them', 'they' might burden too,",
+      "'They' are hard, may have shine, cutting very fine,",
+      "Now easy, guess the 'it', with all of this as clue."
+    ],
+
+    hints: ["Time gives you these twice, but only one is meant to stay.",
+"You use 'them' every day for eating."
+    ],
+    answer: ["tooth","teeth"]
+    
+  },
 ]
