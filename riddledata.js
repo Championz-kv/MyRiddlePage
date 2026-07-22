@@ -850,4 +850,88 @@ const RIDDLES = [
     answer: ["tooth","teeth"]
     
   },
+  {
+    id: 40,
+    name: "At the End of the Line",
+    difficulty: "easy",
+    lines: [
+      "Guess the 'it', 'it' is at the end of the tail,",
+      "and the tail is vital for the body to work,",
+      "and various bodies are used by people,",
+      "different by doctor and different by clerk.",
+      "The tail connects 'it' with the body,",
+      "and 'it' is attached to two or three holes,",
+      "never do touch 'it', when connected,",
+      "or your bodies might end up as souls."
+    ],
+
+    hints: [
+      "The 'tail' isn't alive organ, yet it carries what the 'body' needs.",
+      "The number of holes it fits into depends on your country's and device standards."
+    ],
+
+    answer: ["plug"]
+  },
+  {
+    id: 41,
+    name: "Two Things of the Summer",
+    difficulty: "moderate",
+    lines: [
+      "'It' grows slowly and slowly,",
+      "I saw everyday through the window,",
+      "'Its' usable part is white, inside which",
+      "lies the black thing trying not to show.",
+      "'It' may be used as 'it' is or,",
+      "made into something for summer season,",
+      "Guess the 'it' but do remember,",
+      "there are two answers, not just one."
+    ],
+
+    hints: [
+      "Both the answers are obtained from plants.",
+      "One is a juicy summer fruit with a dark seed, while the other becomes the fabric of many summer clothes."
+    ],
+
+    answer: ["lychee", "litchi", "cotton"]
+  },
+  {
+    id: 42,
+    name: "Silently Waiting for You",
+    difficulty: "easy",
+    lines: [
+      "If 'it' moves, when not in view, about that no one knows,",
+      "but 'they' all stand still, before your eyes to get spell,",
+      "no noise does 'it' make, just 'it' stands in rows,",
+      "guess the 'it', for sake of many things that 'they' tell."
+    ],
+
+    hints: [
+      "Individually, 'they' are symbols. Together, they carry thoughts across time.",
+      "'They' line up on pages, screens, and signs to form sentences."
+    ],
+
+    answer: ["words"]
+  },
+  {
+    id: 43,
+    name: "After the Purchase",
+    difficulty: "easy",
+    lines: [
+      "'It' is used to buy the grains,",
+      "but is given to you after the grains you buy,",
+      "'it' may be used to help the poor,",
+      "by the seated elected guy.",
+      "If 'it' is long and has many items,",
+      "'it' may make her husband cry,",
+      "solve the riddle and guess the 'it',",
+      "there is no need to be so shy."
+    ],
+
+    hints: [
+      "The same word can mean a proposal in government or a statement of what you owe.",
+      "You receive one after shopping, and lawmakers also introduce one."
+    ],
+
+    answer: ["bill"]
+  },
 ]
