@@ -934,4 +934,112 @@ const RIDDLES = [
 
     answer: ["bill"]
   },
+  {
+    id: 44,
+    name: "Same Yet Different",
+    difficulty: "easy",
+    lines: [
+      "'It' is used by the fishes,",
+      "and is done by the climbers,",
+      "'it' is put on the graph,",
+      "and is used by the grocers.",
+      "'It' has many spaces in between,",
+      "large enough to put in nothing,",
+      "yet are the fishes inside 'it',",
+      "so, 'it' is again what you need to be guessing."
+    ],
+
+    hints: [
+      "The word changes its meaning depending on where you find it.",
+      "Every clue points to the same spelling, even though each use is completely different."
+    ],
+
+    answer: ["scales", "scale"]
+  },
+  {
+    id: 45,
+    name: "Borrowed Light",
+    difficulty: "moderate",
+    lines: [
+      "'It' shines like a star,",
+      "only while we shine",
+      "from front-",
+      "Guess the 'it' for me.",
+      "",
+      "(Japanese Haiku styled poem.)"
+    ],
+
+    hints: [
+      "It never creates light of its own.",
+      "Its brightness depends entirely on light coming from the direction you're looking."
+    ],
+
+    answer: ["reflector","reflectors","mirror","mirrors","shiny surface"]
+  },
+  {
+    id: 46,
+    name: "Five Days Later",
+    difficulty: "easy",
+    lines: [
+      "'It' flies high, has wings, lays eggs and builds nest,",
+      "you may cage 'it' or kill 'it', and then it's up to you the rest.",
+      "I know 'it' is too easy to guess so,",
+      "let me ask you a question easy but rolled,",
+      "try to answer correctly at the first time,",
+      "'What is 'it' called after 'it' is five days old?'"
+    ],
+
+    hints: [
+      "The trick is in the wording, not in identifying the animal.",
+      "Don't overthink it—answer the question exactly as it's asked."
+    ],
+
+    answer: [
+      "six days old bird",
+      "six day old bird",
+      "6 days old bird",
+      "6 day old bird",
+      "bird six days old",
+      "bird six day old"
+    ]
+  },
+  {
+    id: 47,
+    name: "Hours Well Spent",
+    difficulty: "easy",
+    lines: [
+      "For 'it' you work for hours to get,",
+      "you have to work for hours if 'it' is set,",
+      "Guess the 'it', won't take hours I bet."
+    ],
+
+    hints: [
+      "The same word fits both before and after you obtain it.",
+      "First you strive to get it, then it keeps you busy."
+    ],
+
+    answer: ["job","work"]
+  },
+  {
+    id: 48,
+    name: "The Long Neck Mystery",
+    difficulty: "moderate",
+    lines: [
+      "'It' has long neck,",
+      "'it' may be living or not,",
+      "If living 'it' eats,",
+      "else 'it' picks up cargo lot.",
+      "'It' can fly and is,",
+      "at construction not hard to spot,",
+      "what, is it?",
+      "Any guesses have you got?"
+    ],
+
+    hints: [
+      "The answer has two very different meanings, both sharing the same name.",
+      "a graceful bird, and a giant machine"
+    ],
+
+    answer: ["crane"]
+  },
 ]
