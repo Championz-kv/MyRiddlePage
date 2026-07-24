@@ -977,6 +977,64 @@ const RIDDLES = [
     answer: ["reflector","reflectors","mirror","mirrors","shiny surface"]
   },
   {
+    id: 903,
+    name: "The Six Holders",
+    difficulty: "master",
+    lines: [
+      "In the domain of riddles, here again,",
+      "you are inside, to attain the fame.",
+      "6 holders are in front, two columns of three,",
+      "numbered in the way like, below you will see.",
+      "",
+      "    V",
+      "0 1 2 0",
+      "0 3 4 0",
+      "0 5 6 0",
+      "",
+      "Also there are some mirrors left and right,",
+      "marked as zeros above, which reflects back the light.",
+      "Then there is a laser there, pointing at two,",
+      "above which lies the crinkly wrinkly,",
+      "which has the hints, let's read it for you.",
+      "",
+      "Hints, as on the crinkly wrinkly paper-",
+      "There are six gemstones, all interact with the light different,",
+      "you to have throw light at all mirrors, and with treasure you'll be sent.",
+      "Ruby diverts the light to its right, and Sapphire always to the left,",
+      "but Jade is special, and diverts the light, at right angles both right and left.",
+      "Quartz spreads the beam in all four directions, while Amber to the mirror closest,",
+      "Also from Amber, light is directed to Garnet, if the light comes from Ruby, magical? Yes!",
+      "Garnet only allows, Amber's light to pass straight through it,",
+      "All the other striking rays are blocked, however bright it is lit.",
+      "",
+      "Suddenly a tray of 5 coloured crystals appear,",
+      "where's the sixth one, you ask?",
+      "Jade's stuck on the holder 2, oh dear!",
+      "",
+      "I bet you can still arrange,",
+      "the stones perfectly without any doubt,",
+      "What is 'it', the pattern, that you'll,",
+      "need here, use your brain all out!",
+      "",
+      "Note: The pattern is supposed to be answered in the sequence of the numbers,",
+      "for example J-G-R-A-S-Q"
+    ],
+
+    hints: [
+      "Start by determining where the fixed Jade must remain, then eliminate impossible arrangements using the beam rules one gemstone at a time.",
+      "This is a logic puzzle, not a word puzzle. Draw the 2×3 grid and trace every laser path after placing each gemstone."
+    ],
+
+    answer: [
+      "S-J-R-Q-A-G",
+      "SJRQAG",
+      "S J R Q A G",
+      "Q-J-R-S-A-G",
+      "QJRSAG",
+      "Q J R S A G"
+    ]
+  },
+  {
     id: 46,
     name: "Five Days Later",
     difficulty: "easy",
