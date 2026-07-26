@@ -14,7 +14,7 @@
 //
 const AI_CONFIG = {
   enabled: true,
-  model: "meta-llama/llama-4-scout-17b-16e-instruct", // Llama 4, free on Groq
+  model: "llama-4-scout", // Llama 4, free on Groq
 }
 // ═══════════════════════════════════════════════════════════════
 
