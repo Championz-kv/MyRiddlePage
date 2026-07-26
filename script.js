@@ -14,7 +14,7 @@
 //
 const AI_CONFIG = {
   enabled: true,
-  model: "openai/gpt-oss-120b", // Llama 4, free on Groq
+  model: "llama-3.3-70b-versatile", // Llama 3, free on Groq
 }
 // ═══════════════════════════════════════════════════════════════
 
